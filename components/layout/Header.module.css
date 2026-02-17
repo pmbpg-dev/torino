@@ -1,0 +1,19 @@
+.header {
+  @apply h-[64px] bg-card flex items-center justify-between p-8 md:shadow-md lg:h-[74px] lg:px-14;
+}
+.userBtn {
+  @apply h-[44px] border-[2px] border-primary bg-card lg:py-2 lg:px-4;
+}
+.topMenu {
+  @apply hidden lg:flex;
+}
+.topMenu a {
+  @apply ml-8 xl:ml-12 xl:translate-x-14;
+}
+.logo {
+  @apply hidden lg:flex;
+}
+
+.logo img {
+  @apply mr-8;
+}
