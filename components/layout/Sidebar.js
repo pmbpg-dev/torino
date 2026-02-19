@@ -7,14 +7,13 @@ import {
   DrawerTrigger,
 } from "../ui/drawer";
 import { ModeToggle } from "../modeToggle";
-import { House, Menu, Phone, Plane, SquareX, Volume1, X } from "lucide-react";
+import { House, Menu, Phone, Plane, Volume1, X } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { getLinkClass } from "@/helper/getLinkClass";
 
 function Sidebar() {
   const pathname = usePathname();
-  console.log(pathname);
   return (
     <Drawer direction="right" className="block lg:hidden">
       <DrawerTrigger asChild>

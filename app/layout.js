@@ -29,7 +29,7 @@ export default function RootLayout({ children }) {
       >
         <ThemeProvider>
           <Header />
-          <Toaster className="my-toast" />
+          <Toaster position="top-center" />
           {children}
           <Footer />
         </ThemeProvider>

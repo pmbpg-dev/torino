@@ -7,8 +7,18 @@ import { ModeToggle } from "../modeToggle";
 import Link from "next/link";
 import { getLinkClass } from "@/helper/getLinkClass";
 import { usePathname } from "next/navigation";
+import { useState } from "react";
+import Module from "./Module";
+import { AnimatePresence } from "motion/react";
+
 function Header() {
   const pathname = usePathname();
+  const [show, setShow] = useState(false);
+
+  const clickHandler = () => {
+    setShow(true);
+  };
+
   return (
     <header className={css.header}>
       {/* ----- sidebar menu-------- */}
@@ -39,7 +49,7 @@ function Header() {
           تماس با ما
         </Link>
       </div>
-      <Button className={css.userBtn}>
+      <Button className={css.userBtn} onClick={clickHandler}>
         <div className="items-center hidden w-full text-lg justify-evenly text-primary lg:flex">
           <Image
             src="/images/profile.png"
@@ -53,6 +63,9 @@ function Header() {
           <Image src="/images/login.png" width={24} height={24} alt="login" />
         </span>
       </Button>
+      <AnimatePresence initial={false} mode="sync">
+        {show && <Module setShow={setShow} />}
+      </AnimatePresence>
     </header>
   );
 }

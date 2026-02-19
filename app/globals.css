@@ -2,16 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-.my-toast[data-type="success"] {
-  background: #16a34a;
-  color: white;
-}
-
-.my-toast[data-type="error"] {
-  background: #dc2626;
-  color: white;
-}
-
 @font-face {
   font-family: "Vazir";
   src: url("/fonts/vazir/Vazirmatn-Regular.ttf") format("ttf");
@@ -40,7 +30,7 @@
     --background: oklch(0.967 0.001 286.375);
     --foreground: oklch(0.141 0.005 285.823);
     --card: oklch(1 0 0);
-    --card-foreground: oklch(0.141 0.005 285.823);
+    --card-foreground: oklch(14.077% 0.0044 285.776 / 0.438);
     --popover: oklch(1 0 0);
     --popover-foreground: oklch(0.141 0.005 285.823);
     --primary: #28a745;
@@ -93,8 +83,8 @@
   .dark {
     --background: oklch(0.141 0.005 285.823);
     --foreground: oklch(0.985 0 0);
-    --card: oklch(0.21 0.006 285.885);
-    --card-foreground: oklch(0.985 0 0);
+    --card: oklch(15.527% 0.00423 285.844);
+    --card-foreground: oklch(98.511% 0.00011 271.152 / 0.038);
     --popover: oklch(0.21 0.006 285.885);
     --popover-foreground: oklch(0.985 0 0);
     --primary: oklch(0.696 0.17 162.48);

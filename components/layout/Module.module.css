@@ -1,0 +1,27 @@
+.container {
+  @apply fixed top-0 left-0 flex items-center justify-center px-2 w-dvw h-dvh bg-card-foreground backdrop-blur-sm md:p-0;
+}
+.box {
+  @apply w-[571px] h-[362px] bg-card rounded-[20px] overflow-hidden flex flex-col justify-between items-end p-6 relative;
+}
+.box div {
+  @apply flex flex-col items-center justify-around w-full h-full;
+}
+.box svg {
+  @apply fixed;
+}
+.box div form {
+  @apply flex flex-col w-[90%];
+}
+.box div form input {
+  @apply h-[54px];
+}
+.box div form button {
+  @apply h-[54px] text-[18px];
+}
+.box div form label {
+  @apply relative bottom-4 text-muted-foreground;
+}
+.box div form span {
+  @apply h-12 text-sm text-destructive;
+}
