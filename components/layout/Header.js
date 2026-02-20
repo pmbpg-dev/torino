@@ -10,10 +10,12 @@ import { usePathname } from "next/navigation";
 import { useState } from "react";
 import Module from "./Module";
 import { AnimatePresence } from "motion/react";
+import DropDownBtnUser from "../Buttons/dropDownBtnUser";
 
 function Header() {
   const pathname = usePathname();
   const [show, setShow] = useState(false);
+  const [mobile, setMobile] = useState("");
 
   const clickHandler = () => {
     setShow(true);
@@ -49,22 +51,26 @@ function Header() {
           تماس با ما
         </Link>
       </div>
-      <Button className={css.userBtn} onClick={clickHandler}>
-        <div className="items-center hidden w-full text-lg justify-evenly text-primary lg:flex">
-          <Image
-            src="/images/profile.png"
-            width={24}
-            height={24}
-            alt="profile"
-          />
-          <span> ورود | ثبت نام</span>
-        </div>
-        <span className="block text-primary lg:hidden">
-          <Image src="/images/login.png" width={24} height={24} alt="login" />
-        </span>
-      </Button>
+      {mobile.length ? (
+        <DropDownBtnUser mobile={mobile} />
+      ) : (
+        <Button className={css.userBtn} onClick={clickHandler}>
+          <div className="items-center hidden w-full text-lg justify-evenly text-primary lg:flex">
+            <Image
+              src="/images/profile.png"
+              width={24}
+              height={24}
+              alt="profile"
+            />
+            <span> ورود | ثبت نام</span>
+          </div>
+          <span className="block text-primary lg:hidden">
+            <Image src="/images/login.png" width={24} height={24} alt="login" />
+          </span>
+        </Button>
+      )}
       <AnimatePresence initial={false} mode="sync">
-        {show && <Module setShow={setShow} />}
+        {show && <Module setShow={setShow} setMobile={setMobile} />}
       </AnimatePresence>
     </header>
   );

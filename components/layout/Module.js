@@ -14,7 +14,7 @@ import { checkOTP, sendOTP } from "@/services/configs";
 import { toast } from "sonner";
 import OTPInput from "react-otp-input";
 
-function Module({ setShow }) {
+function Module({ setShow, setMobile }) {
   const [step, setStep] = useState(1);
   const [otp, setOtp] = useState("");
   //   ---------------react-hook-form-----------------
@@ -47,6 +47,8 @@ function Module({ setShow }) {
     mutationFn: ({ phone, otp }) => checkOTP(phone, otp),
     onSuccess: (res) => {
       toast.success("با موفقیت وارد شدید");
+      setMobile(res.data.mobile);
+      setShow(false);
     },
     onError: (err) => {
       toast.error("کد وارد شده اشتباه است");

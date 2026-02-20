@@ -1,7 +1,6 @@
 const { default: axios } = require("axios");
 
 const sendOTP = async (phone) => {
-  console.log(phone);
   const res = await axios.post(
     `${process.env.NEXT_PUBLIC_DB_HOST}/auth/send-otp`,
     {

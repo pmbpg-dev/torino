@@ -39,8 +39,7 @@ export async function POST(req) {
       path: "/",
       maxAge: 60 * 60 * 24 * 7,
     });
-
-    return Response.json({ success: true });
+    return Response.json({ success: true, mobile: user.mobile });
   } catch (err) {
     return Response.json(
       { message: "کد وارد شده اشتباه است" },
