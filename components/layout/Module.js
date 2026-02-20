@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "../ui/button";
 import css from "./Module.module.css";
 import { motion } from "motion/react";
@@ -10,33 +10,55 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { phoneSchema } from "@/helper/schemaForm";
 import { toEnglishDigits, toPersianDigits } from "@/helper/convertNumber";
 import { useMutation } from "@tanstack/react-query";
-import { sendOTP } from "@/services/configs";
+import { checkOTP, sendOTP } from "@/services/configs";
 import { toast } from "sonner";
+import OTPInput from "react-otp-input";
 
 function Module({ setShow }) {
   const [step, setStep] = useState(1);
+  const [otp, setOtp] = useState("");
   //   ---------------react-hook-form-----------------
   const {
     control,
     handleSubmit,
+    watch,
     formState: { errors },
   } = useForm({ resolver: yupResolver(phoneSchema) });
-  //---------------get OTP code ------------------
-  const { mutate } = useMutation({
+  const phoneValue = watch("phone");
+  //---------------send OTP code ------------------
+  const { mutate: sendMutate } = useMutation({
     mutationKey: ["sendOTP"],
     mutationFn: (phone) => sendOTP(phone),
     onSuccess: (data) => {
       setStep(2);
-      toast.success("کد اعتبار سنجی", {
+      toast.info("کد اعتبار سنجی", {
         description: `${toPersianDigits(data.code)}`,
         action: {
           label: "وارد کردن",
-          onClick: () => console.log(data.code),
+          onClick: () => setOtp(data.code),
         },
       });
     },
   });
-  const sendCode = (data) => mutate(data);
+  const sendCode = (data) => sendMutate(data.phone);
+  //------------check otp code-----------------
+  const { mutate: checkMutate } = useMutation({
+    mutationKey: ["checkOTP"],
+    mutationFn: ({ phone, otp }) => checkOTP(phone, otp),
+    onSuccess: (res) => {
+      toast.success("با موفقیت وارد شدید");
+    },
+    onError: (err) => {
+      toast.error("کد وارد شده اشتباه است");
+    },
+  });
+  //----------------useEffect for check otp-----------
+  useEffect(() => {
+    if (otp.length < 6) return;
+    checkMutate({ phone: phoneValue, otp: otp });
+  }, [otp]);
+
+  //========================jsx======================
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -48,7 +70,7 @@ function Module({ setShow }) {
         initial={{
           opacity: 0,
           scale: 0,
-          translateY: "100%",
+          translateY: "-100%",
         }}
         animate={{ opacity: 1, scale: 1, translateY: 0 }}
         exit={{ opacity: 0, scale: 0 }}
@@ -61,7 +83,12 @@ function Module({ setShow }) {
         {step === 1 ? (
           <X onClick={() => setShow(false)} />
         ) : (
-          <ArrowLeft onClick={() => setStep(1)} />
+          <ArrowLeft
+            onClick={() => {
+              setStep(1);
+              setOtp("");
+            }}
+          />
         )}
 
         {step === 1 ? (
@@ -71,6 +98,7 @@ function Module({ setShow }) {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3, ease: "easeOut" }}
             key={"step1"}
+            className={css.boxContainer}
           >
             <p className="text-[28px] font-bold">ورود به تورینو</p>
             <form onSubmit={handleSubmit(sendCode)}>
@@ -90,8 +118,8 @@ function Module({ setShow }) {
                       const en = toEnglishDigits(e.target.value);
                       field.onChange(en);
                     }}
-                    placeHolder={toPersianDigits("4235****0919")}
-                    className={errors.phone && ""}
+                    placeholder={toPersianDigits("4235****0919")}
+                    className={`${css.phoneInput} ${errors.phone && "border-destructive"}`}
                   />
                 )}
               />
@@ -107,7 +135,27 @@ function Module({ setShow }) {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3, ease: "easeIn" }}
             key={"step2"}
-          ></motion.div>
+            className={css.boxContainer}
+          >
+            <p className="text-[28px] font-bold">کد تایید را وارد کنید.</p>
+            <label htmlFor="otp-input">
+              کد تایید به شماره {toPersianDigits(phoneValue)}ارسال شد
+            </label>
+            <OTPInput
+              value={toPersianDigits(otp)}
+              onChange={setOtp}
+              numInputs={6}
+              renderSeparator={<span>-</span>}
+              renderInput={(props) => <input {...props} />}
+              containerStyle={css.otpBox}
+              inputStyle={{
+                width: "54px",
+                height: "54px",
+                borderRadius: "6px",
+                border: "1px solid #ccc",
+              }}
+            />
+          </motion.div>
         )}
       </motion.div>
     </motion.div>

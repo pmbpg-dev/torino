@@ -4,7 +4,7 @@
 .box {
   @apply w-[571px] h-[362px] bg-card rounded-[20px] overflow-hidden flex flex-col justify-between items-end p-6 relative;
 }
-.box div {
+.boxContainer {
   @apply flex flex-col items-center justify-around w-full h-full;
 }
 .box svg {
@@ -13,7 +13,7 @@
 .box div form {
   @apply flex flex-col w-[90%];
 }
-.box div form input {
+.phoneInput {
   @apply h-[54px];
 }
 .box div form button {
@@ -24,4 +24,7 @@
 }
 .box div form span {
   @apply h-12 text-sm text-destructive;
+}
+.otpBox {
+  @apply flex flex-row-reverse justify-center w-full;
 }
