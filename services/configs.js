@@ -22,4 +22,14 @@ const checkOTP = async (phone, otp) => {
   }
 };
 
-export { sendOTP, checkOTP };
+const getUser = async () => {
+  const res = await axios.get("/api/user");
+  return res;
+};
+
+const logout = async () => {
+  const res = await axios.post("/api/user/logout");
+  return res;
+};
+
+export { sendOTP, checkOTP, getUser, logout };

@@ -148,7 +148,7 @@ function Module({ setShow, setMobile }) {
               onChange={setOtp}
               numInputs={6}
               renderSeparator={<span>-</span>}
-              renderInput={(props) => <input {...props} />}
+              renderInput={(props) => <input type="number" {...props} />}
               containerStyle={css.otpBox}
               inputStyle={{
                 width: "54px",

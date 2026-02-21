@@ -7,15 +7,30 @@ import { ModeToggle } from "../modeToggle";
 import Link from "next/link";
 import { getLinkClass } from "@/helper/getLinkClass";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Module from "./Module";
 import { AnimatePresence } from "motion/react";
 import DropDownBtnUser from "../Buttons/dropDownBtnUser";
+import { getUser } from "@/services/configs";
+import { useQuery } from "@tanstack/react-query";
+import { Spinner } from "../ui/spinner";
 
 function Header() {
   const pathname = usePathname();
   const [show, setShow] = useState(false);
   const [mobile, setMobile] = useState("");
+
+  const { data, isLoading } = useQuery({
+    queryKey: ["getUser"],
+    queryFn: getUser,
+  });
+
+  useEffect(() => {
+    if (mobile.length) return;
+    if (data?.data.user.mobile) {
+      setMobile(data.data.user.mobile);
+    }
+  }, [data]);
 
   const clickHandler = () => {
     setShow(true);
@@ -51,8 +66,12 @@ function Header() {
           تماس با ما
         </Link>
       </div>
-      {mobile.length ? (
-        <DropDownBtnUser mobile={mobile} />
+      {isLoading ? (
+        <Button variant="outline" disabled>
+          <Spinner className="size-3" />
+        </Button>
+      ) : mobile.length ? (
+        <DropDownBtnUser mobile={mobile} setMobile={setMobile} />
       ) : (
         <Button className={css.userBtn} onClick={clickHandler}>
           <div className="items-center hidden w-full text-lg justify-evenly text-primary lg:flex">

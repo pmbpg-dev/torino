@@ -17,7 +17,18 @@ import {
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
 import { toPersianDigits } from "@/helper/convertNumber";
-function DropDownBtnUser({ mobile }) {
+import { useMutation } from "@tanstack/react-query";
+import { logout } from "@/services/configs";
+import { toast } from "sonner";
+function DropDownBtnUser({ mobile, setMobile }) {
+  const { mutate } = useMutation({
+    mutationKey: ["logout"],
+    mutationFn: logout,
+    onSuccess: (res) => {
+      setMobile("");
+      toast.success(res.data.message);
+    },
+  });
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -40,6 +51,7 @@ function DropDownBtnUser({ mobile }) {
         <DropdownMenuItem
           variant="destructive"
           className="cursor-pointer text-destructive"
+          onClick={mutate}
         >
           <LogOutIcon />
           خروج از حساب کاربری
