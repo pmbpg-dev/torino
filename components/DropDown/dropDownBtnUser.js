@@ -16,9 +16,9 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
-import { toPersianDigits } from "@/helper/convertNumber";
+import { toPersianDigits } from "@/core/helper/convertNumber";
 import { useMutation } from "@tanstack/react-query";
-import { logout } from "@/services/configs";
+import { logout } from "@/core/services/configs";
 import { toast } from "sonner";
 function DropDownBtnUser({ mobile, setMobile }) {
   const { mutate } = useMutation({

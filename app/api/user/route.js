@@ -1,5 +1,5 @@
 import { cookies } from "next/headers";
-import { createServerAxios } from "@/lib/serverAxios";
+import { createServerAxios } from "@/core/lib/serverAxios";
 
 export async function GET() {
   const cookieStore = cookies();

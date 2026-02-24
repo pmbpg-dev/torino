@@ -37,8 +37,18 @@ const isLogin = async () => {
   return res.data;
 };
 
-const getTors = async (destination, origin, start, end) => {};
+const getTors = async (query) => {
+  const url = query
+    ? `${process.env.NEXT_PUBLIC_DB_HOST}/tour?${query}`
+    : `${process.env.NEXT_PUBLIC_DB_HOST}/tour`;
+  try {
+    const res = await axios.get(url);
+    return res;
+  } catch (err) {
+    console.log(err.message);
+  }
+};
 
-export { sendOTP, checkOTP, getUser, logout, isLogin };
+export { sendOTP, checkOTP, getUser, logout, isLogin, getTors };
 
 // 'http://localhost:6500/tour?destinationId=2&originId=1&startDate=2025-10-05T00%3A00%3A00.000Z&endDate=2025-10-10T00%3A00%3A00.000Z'

@@ -10,7 +10,7 @@ import { ModeToggle } from "../theme/modeToggle";
 import { House, Menu, Phone, Plane, Volume1, X } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { getLinkClass } from "@/helper/getLinkClass";
+import { getLinkClass } from "@/core/helper/getLinkClass";
 
 function Sidebar() {
   const pathname = usePathname();

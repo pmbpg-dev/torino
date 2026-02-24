@@ -7,10 +7,10 @@ import { ArrowLeft, X } from "lucide-react";
 import { Input } from "../ui/input";
 import { Controller, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { phoneSchema } from "@/helper/schemaForm";
-import { toEnglishDigits, toPersianDigits } from "@/helper/convertNumber";
+import { phoneSchema } from "@/core/helper/schemaForm";
+import { toEnglishDigits, toPersianDigits } from "@/core/helper/convertNumber";
 import { useMutation } from "@tanstack/react-query";
-import { checkOTP, sendOTP } from "@/services/configs";
+import { checkOTP, sendOTP } from "@/core/services/configs";
 import { toast } from "sonner";
 import OTPInput from "react-otp-input";
 
