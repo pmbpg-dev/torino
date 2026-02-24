@@ -157,3 +157,7 @@
     @apply bg-background text-foreground;
   }
 }
+/* date piker */
+.css-137m4ck {
+  border-radius: 15px !important;
+}

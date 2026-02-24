@@ -1,5 +1,5 @@
 import { cookies } from "next/headers";
-import axios from "axios";
+import { createServerAxios } from "@/lib/serverAxios";
 
 export async function GET() {
   const cookieStore = cookies();
@@ -10,14 +10,12 @@ export async function GET() {
   }
 
   try {
-    const res = await axios.get(
-      `${process.env.NEXT_PUBLIC_DB_HOST}/user/profile`,
-      {
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
+    const axios = createServerAxios();
+    const res = await axios.get(`/user/profile`, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
       },
-    );
+    });
     return Response.json({ user: res.data });
   } catch (err) {
     return Response.json({ user: null }, { status: 401 });

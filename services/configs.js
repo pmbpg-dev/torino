@@ -12,7 +12,7 @@ const sendOTP = async (phone) => {
 
 const checkOTP = async (phone, otp) => {
   try {
-    const res = await axios.post("/api/auth/verify", {
+    const res = await axios.post("/api/auth/check-otp", {
       mobile: phone,
       code: otp,
     });
@@ -23,7 +23,7 @@ const checkOTP = async (phone, otp) => {
 };
 
 const getUser = async () => {
-  const res = await axios.get("/api/user");
+  const res = await axios.get(`${process.env.NEXT_PUBLIC_NEXT_HOST}/user`);
   return res;
 };
 
@@ -32,4 +32,13 @@ const logout = async () => {
   return res;
 };
 
-export { sendOTP, checkOTP, getUser, logout };
+const isLogin = async () => {
+  const res = await axios.get("/api/user/isLogin");
+  return res.data;
+};
+
+const getTors = async (destination, origin, start, end) => {};
+
+export { sendOTP, checkOTP, getUser, logout, isLogin };
+
+// 'http://localhost:6500/tour?destinationId=2&originId=1&startDate=2025-10-05T00%3A00%3A00.000Z&endDate=2025-10-10T00%3A00%3A00.000Z'

@@ -6,7 +6,7 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from "../ui/drawer";
-import { ModeToggle } from "../modeToggle";
+import { ModeToggle } from "../theme/modeToggle";
 import { House, Menu, Phone, Plane, Volume1, X } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";

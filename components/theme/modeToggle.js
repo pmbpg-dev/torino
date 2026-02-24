@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
-import { Button } from "./ui/button";
+import { Button } from "../ui/button";
 import { Moon, Sun } from "lucide-react";
 
 export function ModeToggle() {
@@ -25,7 +25,7 @@ export function ModeToggle() {
       <Button
         variant="outline"
         className="w-10 h-10 rounded-full "
-        onClick={() => setTheme(theme === "light" ? "dark" : "light")}
+        onClick={() => setTheme(isDark ? "light" : "dark")}
       >
         {isDark ? <Moon /> : <Sun />}
       </Button>

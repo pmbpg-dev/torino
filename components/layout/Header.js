@@ -3,7 +3,7 @@ import Image from "next/image";
 import { Button } from "../ui/button";
 import css from "./Header.module.css";
 import Sidebar from "./Sidebar";
-import { ModeToggle } from "../modeToggle";
+import { ModeToggle } from "../theme/modeToggle";
 import Link from "next/link";
 import { getLinkClass } from "@/helper/getLinkClass";
 import { usePathname } from "next/navigation";
@@ -11,9 +11,10 @@ import { useEffect, useState } from "react";
 import Module from "./Module";
 import { AnimatePresence } from "motion/react";
 import DropDownBtnUser from "../Buttons/dropDownBtnUser";
-import { getUser } from "@/services/configs";
+import { getUser, isLogin } from "@/services/configs";
 import { useQuery } from "@tanstack/react-query";
 import { Spinner } from "../ui/spinner";
+import axios from "axios";
 
 function Header() {
   const pathname = usePathname();
@@ -22,13 +23,13 @@ function Header() {
 
   const { data, isLoading } = useQuery({
     queryKey: ["getUser"],
-    queryFn: getUser,
+    queryFn: isLogin,
   });
 
   useEffect(() => {
     if (mobile.length) return;
-    if (data?.data.user.mobile) {
-      setMobile(data.data.user.mobile);
+    if (data) {
+      setMobile(data.user ? data.user.mobile : "");
     }
   }, [data]);
 
