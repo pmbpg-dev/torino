@@ -13,6 +13,7 @@ export const jalalidate = (start, end) => {
     .calendar("jalali")
     .locale("fa")
     .format("DD MMMM YYYY");
+  const sMonth = dayjs(start).calendar("jalali").locale("fa").format("MMMM");
 
-  return [toPersianDigits(sDate), toPersianDigits(eDate)];
+  return [toPersianDigits(sDate), toPersianDigits(eDate), sMonth];
 };
