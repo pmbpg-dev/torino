@@ -1,17 +1,18 @@
-"use client";
-
 import TorsComponent from "@/components/main/torsComponent";
-import { useState } from "react";
-import { DatePicker } from "zaman";
+import Image from "next/image";
 
 export default function Home() {
-  const [change, setChange] = useState();
-  const [changeDate, setChangeDate] = useState();
-
   return (
     <main>
-      <header></header>
-      <article>
+      <header className="flex items-center justify-center w-full">
+        <Image
+          src={"/images/cover.png"}
+          width={1000}
+          height={1000}
+          className="w-full"
+        />
+      </header>
+      <article className="flex flex-col items-center w-full ">
         <h3>
           بگزار کننده بهترین تور های داخلی و خارجی<span>تورینو</span>
         </h3>

@@ -21,9 +21,6 @@
     text-wrap: balance;
   }
 }
-* {
-  transition: all ease-in 0.3s;
-}
 
 @layer base {
   :root {
