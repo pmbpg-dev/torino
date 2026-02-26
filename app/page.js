@@ -1,7 +1,7 @@
 import TorsComponent from "@/components/main/torsComponent";
 import Image from "next/image";
 
-export default function Home() {
+export default async function Home() {
   return (
     <main>
       <header className="flex items-center justify-center w-full">

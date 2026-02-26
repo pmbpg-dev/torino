@@ -1,4 +1,4 @@
-const cityFaMap = {
+export const cityFaMap = {
   1: "تهران",
   2: "سنندج",
   3: "مادرید",

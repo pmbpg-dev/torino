@@ -21,6 +21,7 @@
     "axios": "^1.13.5",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "jalali-plugin-dayjs": "^1.1.4",
     "lucide-react": "^0.563.0",
     "motion": "^12.34.2",
     "next": "14.2.35",

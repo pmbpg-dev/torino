@@ -3,10 +3,15 @@
 import Image from "next/image";
 import { Button } from "../ui/button";
 import { toPersianDigits } from "@/core/helper/convertNumber";
+import { useRouter } from "next/navigation";
 
 function Card({ data }) {
+  const navigate = useRouter();
   return (
-    <div className="overflow-hidden border rounded-lg bg-card">
+    <div
+      className="overflow-hidden border rounded-lg bg-card"
+      onClick={() => navigate.push(`tours/${data.id}`)}
+    >
       <Image
         src={data.image}
         width={300}
