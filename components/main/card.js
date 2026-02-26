@@ -8,10 +8,7 @@ import { useRouter } from "next/navigation";
 function Card({ data }) {
   const navigate = useRouter();
   return (
-    <div
-      className="overflow-hidden border rounded-lg bg-card"
-      onClick={() => navigate.push(`tours/${data.id}`)}
-    >
+    <div className="overflow-hidden border rounded-lg bg-card">
       <Image
         src={data.image}
         width={300}
@@ -22,9 +19,9 @@ function Card({ data }) {
       <p className="text-[22px] mt-2 mr-2">{data.title}</p>
       <p>...</p>
       <div className="flex justify-between w-full p-2 border-t">
-        <Button>رزرو</Button>
+        <Button onClick={() => navigate.push(`tours/${data.id}`)}>رزرو</Button>
         <p>
-          {data.price}
+          {toPersianDigits(data.price.toLocaleString())}
           <span>تومان</span>
         </p>
       </div>

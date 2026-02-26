@@ -1,5 +1,5 @@
 .header {
-  @apply h-[64px] bg-card flex items-center justify-between p-8 md:shadow-md lg:h-[74px] lg:px-14;
+  @apply h-[64px] bg-card flex items-center justify-between p-8 shadow-md lg:h-[74px] lg:px-14 border-b;
 }
 .userBtn {
   @apply h-[44px] border-[2px] border-primary bg-card lg:py-2 lg:px-4;
