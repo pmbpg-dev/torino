@@ -1,3 +1,6 @@
+import About from "@/components/template/main/about";
+import CardFlow from "@/components/template/main/cardFlow";
+import Telephone from "@/components/template/main/telephone";
 import TorsComponent from "@/components/template/main/torsComponent";
 import Image from "next/image";
 
@@ -18,6 +21,9 @@ export default async function Home() {
           برگزار کننده بهترین تور های داخلی و خارجی
         </h3>
         <TorsComponent />
+        <Telephone />
+        <CardFlow />
+        <About />
       </article>
     </main>
   );

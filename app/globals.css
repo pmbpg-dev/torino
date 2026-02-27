@@ -2,20 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@font-face {
-  font-family: "Vazir";
-  src: url("/fonts/vazir/Vazirmatn-Regular.ttf") format("ttf");
-  font-weight: 500;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "Vazir";
-  src: url("/fonts/vazir/Vazirmatn-Bold.ttf") format("ttf");
-  font-weight: 700;
-  font-style: normal;
-}
-
 @layer utilities {
   .text-balance {
     text-wrap: balance;
@@ -31,7 +17,7 @@
     --popover: oklch(1 0 0);
     --popover-foreground: oklch(0.141 0.005 285.823);
     --primary: #28a745;
-    --primary-foreground: oklch(0.982 0.018 155.826);
+    --primary-foreground: #092c10;
     --secondary: oklch(0.967 0.001 286.375);
     --secondary-foreground: oklch(0.21 0.006 285.885);
     --muted: oklch(0.967 0.001 286.375);
@@ -85,7 +71,7 @@
     --popover: oklch(0.21 0.006 285.885);
     --popover-foreground: oklch(0.985 0 0);
     --primary: oklch(0.696 0.17 162.48);
-    --primary-foreground: oklch(0.393 0.095 152.535);
+    --primary-foreground: #d0ffda;
     --secondary: oklch(0.274 0.006 286.033);
     --secondary-foreground: oklch(0.985 0 0);
     --muted: oklch(0.274 0.006 286.033);
@@ -158,3 +144,18 @@
 .css-137m4ck {
   border-radius: 15px !important;
 }
+
+/* .swiper {
+  width: 240px;
+  height: 320px;
+} */
+
+/* .swiper-slide {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 18px;
+  font-size: 22px;
+  font-weight: bold;
+  width: 100%;
+}  */
