@@ -1,5 +1,5 @@
 .container {
-  @apply fixed top-0 left-0 flex items-center justify-center px-2 w-dvw h-dvh bg-card-foreground backdrop-blur-sm md:p-0;
+  @apply fixed top-0 left-0 flex items-center justify-center px-2 w-dvw h-dvh bg-card-foreground backdrop-blur-sm md:p-0 z-[1000];
 }
 .box {
   @apply w-[571px] h-[362px] bg-card rounded-[20px] overflow-hidden flex flex-col justify-between items-end p-6 relative;

@@ -17,6 +17,7 @@ import OTPInput from "react-otp-input";
 function Module({ setShow, setMobile }) {
   const [step, setStep] = useState(1);
   const [otp, setOtp] = useState("");
+  const [time, setTime] = useState(0);
   //   ---------------react-hook-form-----------------
   const {
     control,
@@ -38,6 +39,7 @@ function Module({ setShow, setMobile }) {
           onClick: () => setOtp(data.code),
         },
       });
+      setTime(60);
     },
   });
   const sendCode = (data) => sendMutate(data.phone);
@@ -59,7 +61,16 @@ function Module({ setShow, setMobile }) {
     if (otp.length < 6) return;
     checkMutate({ phone: phoneValue, otp: otp });
   }, [otp]);
+  // --------------useEffect for timer---------------
+  useEffect(() => {
+    if (!time) return;
 
+    const timer = setInterval(() => {
+      setTime((prev) => prev - 1);
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, [time]);
   //========================jsx======================
   return (
     <motion.div
@@ -83,7 +94,7 @@ function Module({ setShow, setMobile }) {
         key="box"
       >
         {step === 1 ? (
-          <X onClick={() => setShow(false)} />
+          <X onClick={() => setShow(false)} className="cursor-pointer " />
         ) : (
           <ArrowLeft
             onClick={() => {
@@ -147,7 +158,6 @@ function Module({ setShow, setMobile }) {
               value={toPersianDigits(otp)}
               onChange={setOtp}
               numInputs={6}
-              renderSeparator={<span>-</span>}
               renderInput={(props) => <input type="number" {...props} />}
               containerStyle={css.otpBox}
               inputStyle={{
@@ -155,8 +165,19 @@ function Module({ setShow, setMobile }) {
                 height: "54px",
                 borderRadius: "6px",
                 border: "1px solid #ccc",
+                margin: "4px",
               }}
             />
+            {time ? (
+              <p className="text-muted-foreground">{`${time} ثانیه تا ارسال مجدد کد`}</p>
+            ) : (
+              <p
+                className="text-[var(--price)] cursor-pointer"
+                onClick={() => sendMutate(phoneValue)}
+              >
+                ارسال مجدد
+              </p>
+            )}
           </motion.div>
         )}
       </motion.div>

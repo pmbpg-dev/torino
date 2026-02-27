@@ -1,11 +1,11 @@
 "use client";
 
 import Image from "next/image";
-import { Button } from "../ui/button";
 import { toPersianDigits } from "@/core/helper/convertNumber";
 import { useRouter } from "next/navigation";
 import { jalalidate } from "@/core/helper/convertDate";
 import { calculateDays } from "@/core/helper/calculateDays";
+import { Button } from "@/components/ui/button";
 
 function Card({ data }) {
   const navigate = useRouter();
@@ -16,7 +16,7 @@ function Card({ data }) {
       <Image
         src={data.image}
         width={300}
-        height={300}
+        height={170}
         alt={data.title}
         className="transition  hover:scale-105 hover:translate-y-[-5px]"
       />

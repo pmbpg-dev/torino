@@ -3,7 +3,6 @@ import { toPersianDigits } from "@/core/helper/convertNumber";
 import { CircleStar, Map, UserRoundCheck } from "lucide-react";
 import Image from "next/image";
 import { notFound } from "next/navigation";
-import css from "./tourDetails.module.css";
 import InfoTour from "@/components/template/infoTour";
 import { Button } from "@/components/ui/button";
 
