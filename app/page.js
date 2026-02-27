@@ -16,8 +16,8 @@ export default async function Home() {
         />
       </header>
       <article className="flex flex-col items-center w-full ">
-        <h3 className="my-8 text-[30px]">
-          <span className="ml-1 text-primary"> تورینو</span>
+        <h3 className="my-8 text-[30px] text-center px-4">
+          <span className="ml-1 text-primary">تورینو</span>
           برگزار کننده بهترین تور های داخلی و خارجی
         </h3>
         <TorsComponent />

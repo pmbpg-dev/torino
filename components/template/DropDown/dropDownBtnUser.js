@@ -7,7 +7,11 @@ import {
   LogOutIcon,
   UserIcon,
 } from "lucide-react";
-import { Button } from "../ui/button";
+import { toPersianDigits } from "@/core/helper/convertNumber";
+import { useMutation } from "@tanstack/react-query";
+import { logout } from "@/core/services/configs";
+import { toast } from "sonner";
+import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -15,11 +19,7 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "../ui/dropdown-menu";
-import { toPersianDigits } from "@/core/helper/convertNumber";
-import { useMutation } from "@tanstack/react-query";
-import { logout } from "@/core/services/configs";
-import { toast } from "sonner";
+} from "@/components/ui/dropdown-menu";
 function DropDownBtnUser({ mobile, setMobile }) {
   const { mutate } = useMutation({
     mutationKey: ["logout"],

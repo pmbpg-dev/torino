@@ -3,11 +3,11 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { DatePicker } from "zaman";
-import SelectCity from "@/components/DropDown/selectCity";
 import { Button } from "@/components/ui/button";
 import { useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { CalendarDays, Earth, MapPin } from "lucide-react";
+import SelectCity from "../DropDown/selectCity";
 
 function Search({ onSearch }) {
   const searchParams = useSearchParams();

@@ -10,11 +10,10 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import Module from "./Module";
 import { AnimatePresence } from "motion/react";
-import DropDownBtnUser from "../DropDown/dropDownBtnUser";
-import { getUser, isLogin } from "@/core/services/configs";
+import { isLogin } from "@/core/services/configs";
 import { useQuery } from "@tanstack/react-query";
 import { Spinner } from "../ui/spinner";
-import axios from "axios";
+import DropDownBtnUser from "../template/DropDown/dropDownBtnUser";
 
 function Header() {
   const pathname = usePathname();

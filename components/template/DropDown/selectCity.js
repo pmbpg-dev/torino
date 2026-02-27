@@ -1,15 +1,9 @@
 "use client";
 
 import { MapPin } from "lucide-react";
-import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectLabel,
-  SelectTrigger,
-} from "../ui/select";
+
 import { SelectValue } from "@radix-ui/react-select";
+import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger } from "@/components/ui/select";
 
 function SelectCity({ cities, placeHolder, value, onChange }) {
   return (
