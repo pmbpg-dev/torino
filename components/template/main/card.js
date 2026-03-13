@@ -6,13 +6,20 @@ import { useRouter } from "next/navigation";
 import { jalalidate } from "@/core/helper/convertDate";
 import { calculateDays } from "@/core/helper/calculateDays";
 import { Button } from "@/components/ui/button";
+import { motion } from "motion/react";
 
 function Card({ data }) {
   const navigate = useRouter();
   const dates = jalalidate(data.startDate, data.endDate);
   const day = calculateDays(data.startDate, data.endDate);
   return (
-    <div className="overflow-hidden border rounded-lg bg-card">
+    <motion.div
+      initial={{ scale: 0.5 }}
+      animate={{ scale: 1 }}
+      exit={{ scale: 0.5 }}
+      key={data.id}
+      className="overflow-hidden transform border rounded-lg bg-card"
+    >
       <Image
         src={data.image}
         width={300}
@@ -34,7 +41,7 @@ function Card({ data }) {
           <span className="text-[12px] text-muted-foreground mr-2">تومان</span>
         </p>
       </div>
-    </div>
+    </motion.div>
   );
 }
 

@@ -19,6 +19,7 @@ function Header() {
   const pathname = usePathname();
   const [show, setShow] = useState(false);
   const [mobile, setMobile] = useState("");
+  const [isScrolled, setIsScrolled] = useState(false);
 
   const { data, isLoading } = useQuery({
     queryKey: ["getUser"],
@@ -32,12 +33,24 @@ function Header() {
     }
   }, [data]);
 
+  useEffect(() => {
+    const scrollHandler = () => {
+      if (window.scrollY > 10) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+    window.addEventListener("scroll", scrollHandler);
+    return () => window.removeEventListener("scroll", scrollHandler);
+  }, []);
+
   const clickHandler = () => {
     setShow(true);
   };
 
   return (
-    <header className={css.header}>
+    <header className={isScrolled ? css.headerBlur : css.header}>
       {/* ----- sidebar menu-------- */}
       <div className="block lg:hidden">
         <Sidebar />
@@ -56,13 +69,13 @@ function Header() {
         <Link href="/" className={getLinkClass(pathname, "/")}>
           صفحه اصلی
         </Link>
-        <Link href="/" className={getLinkClass(pathname, "/helo")}>
+        <Link href="" className={getLinkClass(pathname, "")}>
           خدمات گردشگری
         </Link>
-        <Link href="/" className={getLinkClass(pathname, "/helo")}>
+        <Link href="/" className={getLinkClass(pathname, "")}>
           درباره ما
         </Link>
-        <Link href="/helo" className={getLinkClass(pathname, "/helo")}>
+        <Link href="" className={getLinkClass(pathname, "")}>
           تماس با ما
         </Link>
       </div>

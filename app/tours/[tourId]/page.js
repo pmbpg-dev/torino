@@ -3,8 +3,9 @@ import { toPersianDigits } from "@/core/helper/convertNumber";
 import { CircleStar, Map, UserRoundCheck } from "lucide-react";
 import Image from "next/image";
 import { notFound } from "next/navigation";
-import InfoTour from "@/components/template/infoTour";
+import InfoTour from "@/components/template/tourDetails/infoTour";
 import { Button } from "@/components/ui/button";
+import BackButton from "@/components/template/tourDetails/backButton";
 
 export default async function TourDetails({ params }) {
   const res = await fetch(
@@ -15,11 +16,11 @@ export default async function TourDetails({ params }) {
   );
   if (!res.ok) return notFound();
   const data = await res.json();
-  console.log(data);
   const day = calculateDays(data.startDate, data.endDate);
 
   return (
-    <div className="flex items-center justify-center w-full p-3 bg-card md:bg-background lg:px-14">
+    <div className="relative flex flex-col items-end justify-center w-full gap-4 p-3 pb-14 md:bg-background bg-card lg:px-14">
+      <BackButton />
       <div className="w-full bg-card rounded-[10px] md:border-2 md:py-3">
         <div className="flex flex-col w-full p-4 md:flex-row ">
           <Image
@@ -47,7 +48,7 @@ export default async function TourDetails({ params }) {
                 تضمین کیفیت
               </p>
             </div>
-            <div className="flex flex-wrap justify-center w-full gap-2 md:hidden">
+            <div className="flex flex-wrap justify-start w-full gap-2 md:hidden">
               <InfoTour data={data} />
             </div>
             <div className="flex justify-between w-full pt-4 mt-8 border-t-2 md:flex-row-reverse md:border-none md:w-full">

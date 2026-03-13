@@ -29,19 +29,12 @@ function TorsComponent() {
       <h3 className=" text-[32px] mt-12 mb-4 w-full px-5 text-center md:text-right md:w-[85%] border-b pb-4">
         {query ? "تور های فیلتر شده" : "همه تور ها"}
       </h3>
-      <div className="grid grid-cols-1 gap-4 px-3 md:grid-cols-3 lg:grid-cols-4">
+      <div className="grid grid-cols-1 gap-4 px-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         {tours && tours.map((tour) => <Card data={tour} key={tour.id} />)}
-        {isLoading && (
-          <>
-            <Skeleton className="w-[300px] h-[308px]" />
-            <Skeleton className="w-[300px] h-[308px]" />
-            <Skeleton className="w-[300px] h-[308px]" />
-            <Skeleton className="w-[300px] h-[308px]" />
-            <Skeleton className="w-[300px] h-[308px]" />
-            <Skeleton className="w-[300px] h-[308px]" />
-            <Skeleton className="w-[300px] h-[308px]" />
-          </>
-        )}
+        {isLoading &&
+          [1, 2, 3, 4, 5, 6, 7, 8].map((skeleton) => (
+            <Skeleton key={skeleton} className="w-[300px] h-[308px]" />
+          ))}
       </div>
       {!isLoading && tours.length === 0 ? (
         <div className="w-full h-[40dvh] flex items-center justify-center text-3xl">

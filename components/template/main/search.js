@@ -100,6 +100,14 @@ function Search({ onSearch }) {
             تاریخ
           </span>
         )}
+        {dateRange && (
+          <button
+            onClick={() => setDateRange("")}
+            className="absolute left-4 md:left-6"
+          >
+            ✕
+          </button>
+        )}
       </div>
       <Button
         className="w-full h-[48px] md:h-full md:w-1/4 rounded-[12px]"

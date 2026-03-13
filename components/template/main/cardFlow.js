@@ -5,23 +5,37 @@ import "swiper/css/pagination";
 import "swiper/css/effect-coverflow";
 import "swiper/css/navigation";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination, EffectCards, Autoplay } from "swiper/modules";
+import {
+  Pagination,
+  EffectCards,
+  Autoplay,
+  EffectCoverflow,
+} from "swiper/modules";
 import Image from "next/image";
 
 export default function CardFlow() {
   return (
-    <div className="flex flex-col justify-center w-full gap-8 lg:flex-row md:gap-0 md:px-12">
+    <div className="flex flex-col items-center justify-center w-full gap-8 lg:flex-row md:gap-0 md:px-12">
       <div className="flex flex-col w-full pr-12 lg:w-1/2">
         <div className="flex items-center w-full gap-3 sm:mb-4 ">
-          <div className="relative w-[35px] h-[35px] md:w-[59px] md:h-[59px] text-card rounded-full flex justify-center items-center md:text-[48px] ">
+          <div className="relative w-[35px] h-[35px] md:w-[59px] md:h-[59px]  rounded-full flex justify-center items-center  ">
             <Image
               src="/images/circle.png"
               width={59}
               height={59}
               alt=""
-              className="absolute "
+              className="absolute hidden md:block"
             />
-            <span className=" z-[3]">؟</span>
+            <Image
+              src="/images/circle2.png"
+              width={59}
+              height={59}
+              alt=""
+              className="absolute block md:hidden"
+            />
+            <span className=" z-[3] text-[24px] font-bold md:text-[48px] text-card">
+              ؟
+            </span>
           </div>
           <p className="text-[38px] font-bold">
             چرا <span className="text-primary">تورینو</span> ؟

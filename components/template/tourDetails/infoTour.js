@@ -12,9 +12,11 @@ import {
 
 const vehicles = {
   SUV: "سواری",
-  Bus: "اتوبوس",
+  bus: "اتوبوس",
   Van: "ون",
-  Airplane: "هواپیما",
+  airplane: "هواپیما",
+  ship: "کشتی",
+  train: "قطار",
 };
 
 function InfoTour({ data }) {

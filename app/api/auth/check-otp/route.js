@@ -19,6 +19,8 @@ export async function POST(req) {
 
     const cookieStore = cookies();
 
+    //-------------set user & access refresh token in server cookie--------------
+
     cookieStore.set("accessToken", accessToken, {
       httpOnly: true,
       sameSite: "lax",

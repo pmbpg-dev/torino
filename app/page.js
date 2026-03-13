@@ -12,6 +12,7 @@ export default async function Home() {
           src={"/images/cover.png"}
           width={1000}
           height={1000}
+          alt="header"
           className="w-full"
         />
       </header>
@@ -21,7 +22,7 @@ export default async function Home() {
           برگزار کننده بهترین تور های داخلی و خارجی
         </h3>
         <TorsComponent />
-        <Telephone />
+        <Telephone id="call" />
         <CardFlow />
         <About />
       </article>
