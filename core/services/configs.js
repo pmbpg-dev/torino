@@ -43,7 +43,7 @@ const getTors = async (query) => {
     : `${process.env.NEXT_PUBLIC_DB_HOST}/tour`;
   try {
     const res = await axios.get(url);
-    return res;
+    return res.data;
   } catch (err) {
     console.log(err.message);
   }

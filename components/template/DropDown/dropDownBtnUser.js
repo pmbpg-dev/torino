@@ -71,7 +71,7 @@ function DropDownBtnUser({ mobile, setMobile }) {
           <ConfirmBox
             close={setIsShowConfirm}
             func={mutate}
-            message="آیا از خروج از حساب کاربریمطمعن هستید؟"
+            message="آیا از خروج از حساب کاربری مطمعن هستید؟"
           />
         )}
       </AnimatePresence>

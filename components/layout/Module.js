@@ -81,15 +81,10 @@ function Module({ setShow, setMobile }) {
     >
       <motion.div
         initial={{
-          opacity: 0,
           scale: 0,
-          translateY: "-100%",
         }}
-        animate={{ opacity: 1, scale: 1, translateY: 0 }}
-        exit={{ opacity: 0, scale: 0 }}
-        transition={{
-          duration: 0.1,
-        }}
+        animate={{ scale: 1 }}
+        exit={{ scale: 0 }}
         className={css.box}
         key="box"
       >
@@ -150,8 +145,10 @@ function Module({ setShow, setMobile }) {
             key={"step2"}
             className={css.boxContainer}
           >
-            <p className="text-[28px] font-bold">کد تایید را وارد کنید.</p>
-            <label htmlFor="otp-input">
+            <p className="text-[18px] md:text-[28px] font-bold">
+              کد تایید را وارد کنید.
+            </p>
+            <label htmlFor="otp-input" className="text-[12px] md:text-[1rem]">
               کد تایید به شماره {toPersianDigits(phoneValue)}ارسال شد
             </label>
             <OTPInput
@@ -160,13 +157,7 @@ function Module({ setShow, setMobile }) {
               numInputs={6}
               renderInput={(props) => <input type="number" {...props} />}
               containerStyle={css.otpBox}
-              inputStyle={{
-                width: "54px",
-                height: "54px",
-                borderRadius: "6px",
-                border: "1px solid #ccc",
-                margin: "4px",
-              }}
+              inputStyle="!w-[36px] !h-[36px] rounded-[6px] border m-1 md:!w-[54px] md:!h-[54px]"
             />
             {time ? (
               <p className="text-muted-foreground">{`${time} ثانیه تا ارسال مجدد کد`}</p>

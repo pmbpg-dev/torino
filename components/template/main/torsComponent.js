@@ -17,11 +17,12 @@ function TorsComponent() {
     setQuery(searchParams.toString());
   }, []);
 
-  const { data, isLoading } = useQuery({
+  const { data, isLoading, error } = useQuery({
     queryKey: ["tours", query],
-    queryFn: () => getTors(query),
+    queryFn: async () => await getTors(query),
   });
-  const tours = data?.data;
+  const tours = data || [];
+  console.log(tours);
 
   return (
     <article className="flex flex-col flex-wrap items-center w-full gap-2 ">
@@ -36,12 +37,12 @@ function TorsComponent() {
             <Skeleton key={skeleton} className="w-[300px] h-[308px]" />
           ))}
       </div>
-      {!isLoading && tours.length === 0 ? (
+      {!isLoading && !tours.length && (
         <div className="w-full h-[40dvh] flex items-center justify-center text-3xl">
           <SearchX className="w-12" />
           <p>موردی یافت نشد</p>
         </div>
-      ) : null}
+      )}
     </article>
   );
 }

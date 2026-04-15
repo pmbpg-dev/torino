@@ -12,7 +12,6 @@ export const cityFaMap = {
 
 export const extractCities = (tours) => {
   const cityMap = new Map();
-
   tours.forEach((tour) => {
     [tour.origin, tour.destination].forEach((city) => {
       cityMap.set(city.id, {

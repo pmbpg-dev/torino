@@ -28,7 +28,7 @@ function Sidebar() {
             </DrawerClose>
           </DrawerTitle>
         </DrawerHeader>
-        <div className="flex flex-col px-4 overflow-y-auto no-scrollbar text-md">
+        <div className="flex flex-col px-4 no-scrollbar text-md">
           <Link
             href="/"
             className={`w-full mt-4 flex ${getLinkClass(pathname, "/")}`}

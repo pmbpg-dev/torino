@@ -40,10 +40,14 @@ function Search({ onSearch }) {
     if (originId) params.set("originId", originId);
 
     if (dateRange?.from && dateRange?.to) {
-      params.set("startDate", dateRange.from.toISOString());
-      params.set("endDate", dateRange.to.toISOString());
+      const startDay = new Date(dateRange.from);
+      startDay.setHours(0, 0, 0, 0);
+      const endDate = new Date(dateRange.to);
+      endDate.setHours(0, 0, 0, 0);
+      params.set("startDate", startDay.toISOString());
+      params.set("endDate", endDate.toISOString());
+      console.log(startDay);
     }
-
     const queryString = params.toString();
     onSearch(queryString);
     router.push(`/?${queryString}`);
@@ -93,7 +97,7 @@ function Search({ onSearch }) {
           accentColor="#28a745"
           range
           onChange={(range) => setDateRange(range)}
-          inputClass="md:w-full h-full bg-background text-[12px] outline-none"
+          inputClass="md:!w-full h-full bg-background text-[12px] outline-none"
         />
         {!dateRange && (
           <span className="absolute text-sm pointer-events-none text-muted-foreground md:right-7 md:top-2">
