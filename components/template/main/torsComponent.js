@@ -8,6 +8,7 @@ import { useSearchParams } from "next/navigation";
 import Card from "./card";
 import { Skeleton } from "@/components/ui/skeleton";
 import { SearchX } from "lucide-react";
+import SkeletonCard from "./SkeletonCard";
 
 function TorsComponent() {
   const searchParams = useSearchParams();
@@ -22,7 +23,6 @@ function TorsComponent() {
     queryFn: async () => await getTors(query),
   });
   const tours = data || [];
-  console.log(tours);
 
   return (
     <article className="flex flex-col flex-wrap items-center w-full gap-2 ">
@@ -34,7 +34,7 @@ function TorsComponent() {
         {tours && tours.map((tour) => <Card data={tour} key={tour.id} />)}
         {isLoading &&
           [1, 2, 3, 4, 5, 6, 7, 8].map((skeleton) => (
-            <Skeleton key={skeleton} className="w-[300px] h-[308px]" />
+            <SkeletonCard key={skeleton} />
           ))}
       </div>
       {!isLoading && !tours.length && (
