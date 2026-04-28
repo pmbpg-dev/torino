@@ -13,8 +13,10 @@ import { useMutation } from "@tanstack/react-query";
 import { checkOTP, sendOTP } from "@/core/services/configs";
 import { toast } from "sonner";
 import OTPInput from "react-otp-input";
+import { useRouter } from "next/navigation";
 
 function Module({ setShow, setMobile }) {
+  const router = useRouter();
   const [step, setStep] = useState(1);
   const [otp, setOtp] = useState("");
   const [time, setTime] = useState(0);
@@ -51,6 +53,7 @@ function Module({ setShow, setMobile }) {
       toast.success("با موفقیت وارد شدید");
       setMobile(res.data.mobile);
       setShow(false);
+      router.refresh();
     },
     onError: (err) => {
       toast.error("کد وارد شده اشتباه است");

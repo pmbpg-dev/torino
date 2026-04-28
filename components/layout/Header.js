@@ -6,25 +6,20 @@ import Sidebar from "./Sidebar";
 import { ModeToggle } from "../theme/modeToggle";
 import Link from "next/link";
 import { getLinkClass } from "@/core/helper/getLinkClass";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import Module from "./Module";
 import { AnimatePresence } from "motion/react";
-import { isLogin } from "@/core/services/configs";
-import { useQuery } from "@tanstack/react-query";
 import { Spinner } from "../ui/spinner";
 import DropDownBtnUser from "../template/DropDown/dropDownBtnUser";
+import { useUserLoginStatus } from "@/core/hooks/useUserLoginStatus";
 
 function Header() {
   const pathname = usePathname();
   const [show, setShow] = useState(false);
   const [mobile, setMobile] = useState("");
   const [isScrolled, setIsScrolled] = useState(false);
-
-  const { data, isLoading } = useQuery({
-    queryKey: ["getUser"],
-    queryFn: isLogin,
-  });
+  const { data, isLoading } = useUserLoginStatus();
 
   useEffect(() => {
     if (mobile.length) return;

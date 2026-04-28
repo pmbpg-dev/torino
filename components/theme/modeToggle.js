@@ -29,23 +29,23 @@ export function ModeToggle() {
         <AnimatePresence initial={false} mode="sync">
           {isDark ? (
             <motion.span
-              initial={{ translateY: 50 }}
+              initial={{ translateY: -50 }}
               animate={{ translateY: 0 }}
-              exit={{ translateY: -50 }}
-              key={theme}
-              className="absolute"
-            >
-              <Moon />
-            </motion.span>
-          ) : (
-            <motion.span
-              initial={{ translateY: 50 }}
-              animate={{ translateY: 0 }}
-              exit={{ translateY: -50 }}
+              exit={{ translateY: 50 }}
               key={theme}
               className="absolute"
             >
               <Sun />
+            </motion.span>
+          ) : (
+            <motion.span
+              initial={{ translateY: -50 }}
+              animate={{ translateY: 0 }}
+              exit={{ translateY: 50 }}
+              key={theme}
+              className="absolute"
+            >
+              <Moon />
             </motion.span>
           )}
         </AnimatePresence>

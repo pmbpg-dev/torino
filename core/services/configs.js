@@ -33,7 +33,8 @@ const logout = async () => {
 };
 
 const isLogin = async () => {
-  const res = await axios.get("/api/user/isLogin");
+  const host = process.env.NEXT_PUBLIC_NEXT_HOST;
+  const res = await axios.get(`${host}/user/isLogin`);
   return res.data;
 };
 
@@ -49,6 +50,15 @@ const getTors = async (query) => {
   }
 };
 
-export { sendOTP, checkOTP, getUser, logout, isLogin, getTors };
+const addToBasket = async (tourId) => {
+  try {
+    const res = await axios.post(`/api/basket/${tourId}`);
+    return res.data;
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export { sendOTP, checkOTP, getUser, logout, isLogin, getTors, addToBasket };
 
 // 'http://localhost:6500/tour?destinationId=2&originId=1&startDate=2025-10-05T00%3A00%3A00.000Z&endDate=2025-10-10T00%3A00%3A00.000Z'

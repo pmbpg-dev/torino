@@ -33,6 +33,7 @@ function DropDownBtnUser({ mobile, setMobile }) {
     onSuccess: (res) => {
       setMobile("");
       toast.success(res.data.message);
+      router.push("/");
     },
   });
   return (
