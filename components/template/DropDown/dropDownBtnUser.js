@@ -5,11 +5,12 @@ import {
   CircleUser,
   CircleUserRound,
   LogOutIcon,
+  ShoppingBasket,
   UserIcon,
 } from "lucide-react";
 import { toPersianDigits } from "@/core/helper/convertNumber";
-import { useMutation } from "@tanstack/react-query";
-import { logout } from "@/core/services/configs";
+import { useMutation, useQuery } from "@tanstack/react-query";
+import { getBasket, logout } from "@/core/services/configs";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { AnimatePresence } from "motion/react";
@@ -36,6 +37,11 @@ function DropDownBtnUser({ mobile, setMobile }) {
       router.push("/");
     },
   });
+  const { data } = useQuery({
+    queryKey: ["getTourBasketNum"],
+    queryFn: async () => await getBasket(),
+  });
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -56,6 +62,18 @@ function DropDownBtnUser({ mobile, setMobile }) {
         >
           <UserIcon />
           اطلاعات حساب کاربری
+        </DropdownMenuItem>
+        <DropdownMenuItem
+          className="mt-1 cursor-pointer"
+          onClick={() => router.push("/basket")}
+        >
+          {data?.data && (
+            <span className="text-[10px] text-white rounded-lg bg-destructive px-1">
+              New
+            </span>
+          )}
+          <ShoppingBasket />
+          سبد خرید
         </DropdownMenuItem>
         <DropdownMenuSeparator />
         <DropdownMenuItem
