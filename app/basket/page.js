@@ -1,13 +1,12 @@
 "use client";
 import { Button } from "@/components/ui/button";
-import { useUserLoginStatus } from "@/core/hooks/useUserLoginStatus";
 import { getBasket } from "@/core/services/configs";
 import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useEffect } from "react";
 
 export default function Order() {
+  const navigate = useRouter();
   const { data } = useQuery({
     queryKey: ["getTourBasketNum"],
     queryFn: async () => await getBasket(),
@@ -30,7 +29,11 @@ export default function Order() {
           <p className="flex items-center justify-center h-full pl-3 border-l-2 border-dashed text-[12px] md:text-xl">
             تور مسافرتی - {data?.data.data.title}
           </p>
-          <Button>پرداخت</Button>
+          <Button
+            onClick={() => navigate.push(`/checkout/${data?.data.data.id}`)}
+          >
+            پرداخت
+          </Button>
         </div>
       )}
     </div>

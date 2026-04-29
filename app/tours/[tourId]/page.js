@@ -3,6 +3,38 @@ import { notFound } from "next/navigation";
 import BackButton from "@/components/template/tourDetails/backButton";
 import TourCardDetails from "@/components/template/tourDetails/tourCardDetails";
 
+export async function generateMetadata({ params }) {
+  const { tourId } = params;
+
+  try {
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_DB_HOST}/tour/${tourId}`,
+      {
+        cache: "no-store",
+      },
+    );
+
+    if (!res.ok) {
+      return {
+        title: "تور یافت نشد",
+        description: "تور مورد نظر شما در دسترس نیست.",
+      };
+    }
+
+    const data = await res.json();
+
+    return {
+      title: data?.title,
+      description: "صفحه جزئیات تور مسافرتی انتخاب شده",
+    };
+  } catch (err) {
+    return {
+      title: "خطا در دریافت تور",
+      description: "در حال حاضر اطلاعات تور در دسترس نیست.",
+    };
+  }
+}
+
 export default async function TourDetails({ params }) {
   const { tourId } = await params;
   const res = await fetch(`${process.env.NEXT_PUBLIC_DB_HOST}/tour/${tourId}`, {
