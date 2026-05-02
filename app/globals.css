@@ -29,7 +29,7 @@
     --destructive-foreground: oklch(1 0 0);
     --border: oklch(0.92 0.004 286.32);
     --input: oklch(0.92 0.004 286.32);
-    --ring: #d8ffe1;
+    --ring: #6ab47b;
     --chart-1: oklch(0.646 0.222 41.116);
     --chart-2: oklch(0.6 0.118 184.704);
     --chart-3: oklch(0.398 0.07 227.392);
@@ -140,22 +140,29 @@
     @apply bg-background text-foreground;
   }
 }
-/* date piker */
+/* date piker custom */
 .css-137m4ck {
   border-radius: 15px !important;
+  @apply !bg-background !border-primary;
 }
-
-/* .swiper {
-  width: 240px;
-  height: 320px;
-} */
-
-/* .swiper-slide {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 18px;
-  font-size: 22px;
-  font-weight: bold;
-  width: 100%;
-}  */
+.zm-DaysButton {
+  border-radius: 15px !important;
+}
+.zm-Header {
+  @apply !bg-primary !text-card;
+}
+.css-1koi9rl {
+  @apply !text-card !rounded-lg hover:!bg-ring;
+}
+.css-1pef4cq {
+  @apply !text-card !rounded-lg hover:!bg-ring;
+}
+.css-qmbtae {
+  @apply !text-primary;
+}
+.css-2hhz9b {
+  @apply !text-foreground;
+}
+.css-1x5jyy6[data-disabled="true"] .cl-text {
+  opacity: 0.3 !important;
+}
