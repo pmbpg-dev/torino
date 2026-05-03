@@ -67,6 +67,10 @@ const getBasket = async () => {
     console.log(err);
   }
 };
+const orderPay = async (data) => {
+  const res = await axios.post(`${host}/order`, data);
+  return res;
+};
 
 export {
   sendOTP,
@@ -77,6 +81,7 @@ export {
   getTors,
   addToBasket,
   getBasket,
+  orderPay,
 };
 
 // 'http://localhost:6500/tour?destinationId=2&originId=1&startDate=2025-10-05T00%3A00%3A00.000Z&endDate=2025-10-10T00%3A00%3A00.000Z'

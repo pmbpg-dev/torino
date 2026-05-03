@@ -6,7 +6,7 @@ import {
   CircleUserRound,
   LogOutIcon,
   ShoppingBasket,
-  UserIcon,
+  UserCog,
 } from "lucide-react";
 import { toPersianDigits } from "@/core/helper/convertNumber";
 import { useMutation, useQuery } from "@tanstack/react-query";
@@ -60,7 +60,7 @@ function DropDownBtnUser({ mobile, setMobile }) {
           className="mt-1 cursor-pointer"
           onClick={() => router.push("/profile")}
         >
-          <UserIcon />
+          <UserCog />
           اطلاعات حساب کاربری
         </DropdownMenuItem>
         <DropdownMenuItem

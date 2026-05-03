@@ -5,7 +5,7 @@ import React from "react";
 
 function NotFound() {
   return (
-    <div className="flex flex-col-reverse items-center w-full p-5 h-[70dvh] justify-evenly md:flex-row">
+    <div className="flex flex-col-reverse items-center w-full p-5 md:h-[80dvh] justify-evenly md:flex-row">
       <div className="flex flex-col items-center md:justify-between">
         <p className="mb-12 text-2xl md:text-3xl">صفحه مورد نظر یافت نشد!</p>
         <Link

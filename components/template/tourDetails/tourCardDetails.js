@@ -18,7 +18,7 @@ function TourCardDetails({ tour, day, tourId }) {
     onSuccess: (data) => {
       if (data.error) return toast.warning(data.message);
       toast.success(data.message);
-      // navigate.push("/profile");
+      navigate.push(`/checkout/${tourId}`);
     },
     onError: (err) => {
       toast.warning("برای رزرو باید وارد حساب کاربری شوید!");

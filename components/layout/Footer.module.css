@@ -1,5 +1,5 @@
 .footer {
-  @apply w-[90%]  mx-auto border-dashed border-t-[3px] md:border-solid py-4;
+  @apply w-[95%]  mx-auto border-dashed border-t-[3px] md:border-solid py-4 mt-8;
 }
 .container {
   @apply flex flex-col justify-between w-full md:flex-row md:pl-6;

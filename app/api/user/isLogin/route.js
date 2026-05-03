@@ -1,8 +1,11 @@
 import { cookies } from "next/headers";
 
 export async function GET() {
-  const userCookie = cookies().get("user")?.value;
+  const userCookie = cookies().get("accessToken")?.value;
+  if (!userCookie) return Response.json({ user: false });
 
-  const user = userCookie ? JSON.parse(userCookie) : false;
+  const userIfo = cookies().get("user")?.value;
+  console.log(userIfo);
+  const user = userIfo ? JSON.parse(userIfo) : false;
   return Response.json({ user });
 }

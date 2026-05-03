@@ -25,7 +25,7 @@ export async function POST(req) {
       httpOnly: true,
       sameSite: "lax",
       path: "/",
-      maxAge: 60 * 60 * 24,
+      maxAge: 60 * 60,
     });
     cookieStore.set("refreshToken", refreshToken, {
       httpOnly: true,
@@ -36,7 +36,7 @@ export async function POST(req) {
     cookieStore.set("user", JSON.stringify(user), {
       sameSite: "lax",
       path: "/",
-      maxAge: 60 * 60 * 24 * 7,
+      maxAge: 60 * 60,
     });
     return Response.json({ success: true, mobile: user.mobile });
   } catch (err) {

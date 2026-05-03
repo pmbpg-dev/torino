@@ -1,4 +1,5 @@
 import CheckoutForm from "@/components/template/checkout/CheckoutForm";
+import SelectGender from "@/components/template/DropDown/selectGender";
 
 export default async function TourCheckout({ params }) {
   const { tourId } = await params;
@@ -7,7 +8,6 @@ export default async function TourCheckout({ params }) {
   });
   if (!res.ok) return notFound();
   const data = await res.json();
-  console.log(data);
   return (
     <div>
       <CheckoutForm data={data} />

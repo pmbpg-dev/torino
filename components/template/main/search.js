@@ -93,6 +93,7 @@ function Search({ onSearch }) {
       </div>
       <div className="relative flex items-center justify-center w-full md:w-1/4 md:h-full h-[48px] border-2 rounded-[12px] md:border-none">
         <CalendarDays />
+
         <DatePicker
           accentColor="#28a745"
           range

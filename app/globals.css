@@ -166,3 +166,6 @@
 .css-1x5jyy6[data-disabled="true"] .cl-text {
   opacity: 0.3 !important;
 }
+.css-1u7z70c {
+  @apply !text-foreground !rounded-lg;
+}
