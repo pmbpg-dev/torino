@@ -17,3 +17,11 @@ export const jalalidate = (start, end) => {
 
   return [toPersianDigits(sDate), toPersianDigits(eDate), sMonth];
 };
+
+export const convertTimeDate = (date) => {
+  const shamsi = dayjs(date)
+    .calendar("jalali")
+    .locale("fa")
+    .format("HH:mm - YYYY/MM/DD");
+  return toPersianDigits(shamsi);
+};

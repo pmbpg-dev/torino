@@ -72,6 +72,11 @@ const orderPay = async (data) => {
   return res;
 };
 
+const getTransactions = async () => {
+  const res = await axios.get(`${host}/user/transactions`);
+  return res;
+};
+
 export {
   sendOTP,
   checkOTP,
@@ -82,6 +87,7 @@ export {
   addToBasket,
   getBasket,
   orderPay,
+  getTransactions,
 };
 
 // 'http://localhost:6500/tour?destinationId=2&originId=1&startDate=2025-10-05T00%3A00%3A00.000Z&endDate=2025-10-10T00%3A00%3A00.000Z'

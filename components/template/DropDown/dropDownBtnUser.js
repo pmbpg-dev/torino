@@ -37,10 +37,10 @@ function DropDownBtnUser({ mobile, setMobile }) {
       router.push("/");
     },
   });
-  const { data } = useQuery({
-    queryKey: ["getTourBasketNum"],
-    queryFn: async () => await getBasket(),
-  });
+  // const { data } = useQuery({
+  //   queryKey: ["getTourBasketNum"],
+  //   queryFn: async () => await getBasket(),
+  // });
 
   return (
     <DropdownMenu>
@@ -67,11 +67,11 @@ function DropDownBtnUser({ mobile, setMobile }) {
           className="mt-1 cursor-pointer"
           onClick={() => router.push("/basket")}
         >
-          {data?.data && (
+          {/* {data?.data && (
             <span className="text-[10px] text-white rounded-lg bg-destructive px-1">
               New
             </span>
-          )}
+          )} */}
           <ShoppingBasket />
           سبد خرید
         </DropdownMenuItem>

@@ -1,4 +1,5 @@
 "use client";
+import LoadingPage from "@/components/layout/LoadingPage";
 import { Button } from "@/components/ui/button";
 import { getBasket } from "@/core/services/configs";
 import { useQuery } from "@tanstack/react-query";
@@ -7,10 +8,11 @@ import { useRouter } from "next/navigation";
 
 export default function Order() {
   const navigate = useRouter();
-  const { data } = useQuery({
+  const { data, isLoading } = useQuery({
     queryKey: ["getTourBasketNum"],
     queryFn: async () => await getBasket(),
   });
+  if (isLoading) return <LoadingPage />;
   if (!data)
     return (
       <div className="w-full h-[70vh] flex flex-col justify-center items-center relative md:flex-row md:items-start md:mt-6 md:justify-between md:px-8">

@@ -27,7 +27,7 @@
     --destructive: oklch(0.577 0.245 27.325);
     --price: #009eca;
     --destructive-foreground: oklch(1 0 0);
-    --border: oklch(0.92 0.004 286.32);
+    --border: oklch(90.06% 0.0001 271.152);
     --input: oklch(0.92 0.004 286.32);
     --ring: #6ab47b;
     --chart-1: oklch(0.646 0.222 41.116);
@@ -139,6 +139,16 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+/* scroll custom */
+::-webkit-scrollbar {
+  @apply w-1;
+}
+::-webkit-scrollbar-track {
+  @apply bg-background;
+}
+::-webkit-scrollbar-thumb {
+  @apply bg-primary;
 }
 /* date piker custom */
 .css-137m4ck {
