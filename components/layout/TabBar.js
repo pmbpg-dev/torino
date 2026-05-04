@@ -1,6 +1,6 @@
 "use client";
 
-import { IdCard, Sunset, User } from "lucide-react";
+import { ArrowUpDown, Sunset, User } from "lucide-react";
 import { motion } from "motion/react";
 
 import Link from "next/link";
@@ -36,7 +36,7 @@ export default function TabBar() {
           href="/profile/transactions"
           className={`relative  flex items-center h-full gap-2 ${pathname === "/profile/transactions" && "text-primary"}`}
         >
-          <IdCard />
+          <ArrowUpDown />
           تراکنش ها
         </Link>
       </div>
