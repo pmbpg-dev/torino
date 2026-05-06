@@ -15,6 +15,8 @@ import { toast } from "sonner";
 import OTPInput from "react-otp-input";
 import { useRouter } from "next/navigation";
 
+const LOADING_TOAST = "login-loading-toast";
+
 function Module({ setShow, setMobile }) {
   const router = useRouter();
   const [step, setStep] = useState(1);
@@ -46,10 +48,17 @@ function Module({ setShow, setMobile }) {
   });
   const sendCode = (data) => sendMutate(data.phone);
   //------------check otp code-----------------
-  const { mutate: checkMutate } = useMutation({
+  const { mutate: checkMutate, isPending } = useMutation({
     mutationKey: ["checkOTP"],
     mutationFn: ({ phone, otp }) => checkOTP(phone, otp),
+    onMutate: () => {
+      toast.loading("لطفا صبر کنید ...", {
+        id: LOADING_TOAST,
+        duration: Infinity,
+      });
+    },
     onSuccess: (res) => {
+      toast.dismiss(LOADING_TOAST);
       toast.success("با موفقیت وارد شدید");
       setMobile(res.data.mobile);
       setShow(false);
@@ -59,6 +68,7 @@ function Module({ setShow, setMobile }) {
       toast.error("کد وارد شده اشتباه است");
     },
   });
+
   //----------------useEffect for check otp-----------
   useEffect(() => {
     if (otp.length < 6) return;

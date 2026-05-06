@@ -26,7 +26,7 @@ const checkOTP = async (phone, otp) => {
 
 const getUser = async () => {
   const res = await axios.get(`${host}/user`);
-  return res;
+  return res.data;
 };
 
 const logout = async () => {
@@ -77,6 +77,11 @@ const getTransactions = async () => {
   return res;
 };
 
+const updateProfile = async (data) => {
+  const res = await axios.put(`${host}/user`, data);
+  return res.data;
+};
+
 export {
   sendOTP,
   checkOTP,
@@ -88,6 +93,7 @@ export {
   getBasket,
   orderPay,
   getTransactions,
+  updateProfile,
 };
 
 // 'http://localhost:6500/tour?destinationId=2&originId=1&startDate=2025-10-05T00%3A00%3A00.000Z&endDate=2025-10-10T00%3A00%3A00.000Z'

@@ -25,3 +25,10 @@ export const convertTimeDate = (date) => {
     .format("HH:mm - YYYY/MM/DD");
   return toPersianDigits(shamsi);
 };
+export const convertBirthDate = (date) => {
+  const shamsi = dayjs(date)
+    .calendar("jalali")
+    .locale("fa")
+    .format("YYYY/MM/DD");
+  return toPersianDigits(shamsi);
+};

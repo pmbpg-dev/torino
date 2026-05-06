@@ -18,6 +18,7 @@ function Header() {
   const pathname = usePathname();
   const [show, setShow] = useState(false);
   const [mobile, setMobile] = useState("");
+  const [name, setName] = useState("");
   const [isScrolled, setIsScrolled] = useState(false);
   const { data, isLoading } = useUserLoginStatus();
 
@@ -25,6 +26,11 @@ function Header() {
     if (mobile.length) return;
     if (data) {
       setMobile(data.user ? data.user.mobile : "");
+      setName(
+        data?.user.firstName && data?.user.lastName
+          ? `${data?.user.firstName} ${data?.user.lastName}`
+          : "",
+      );
     }
   }, [data]);
 
@@ -79,7 +85,7 @@ function Header() {
           <Spinner className="size-3" />
         </Button>
       ) : mobile.length ? (
-        <DropDownBtnUser mobile={mobile} setMobile={setMobile} />
+        <DropDownBtnUser mobile={mobile} setMobile={setMobile} name={name} />
       ) : (
         <Button className={css.userBtn} onClick={clickHandler}>
           <div className="items-center hidden w-full text-lg justify-evenly text-primary lg:flex">

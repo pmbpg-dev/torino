@@ -5,7 +5,6 @@ export async function GET() {
   if (!userCookie) return Response.json({ user: false });
 
   const userIfo = cookies().get("user")?.value;
-  console.log(userIfo);
   const user = userIfo ? JSON.parse(userIfo) : false;
   return Response.json({ user });
 }

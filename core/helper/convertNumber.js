@@ -3,7 +3,5 @@ export const toPersianDigits = (str) => {
 };
 
 export const toEnglishDigits = (str) => {
-  return String(str)
-    .replace(/[۰-۹]/g, (d) => "۰۱۲۳۴۵۶۷۸۹".indexOf(d))
-    .replace(/[٠-٩]/g, (d) => "٠١٢٣٤٥٦٧٨٩".indexOf(d)); // عربی
+  return String(str).replace(/[۰-۹]/g, (d) => "۰۱۲۳۴۵۶۷۸۹".indexOf(d));
 };

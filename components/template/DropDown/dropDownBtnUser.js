@@ -25,22 +25,34 @@ import {
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import ConfirmBox from "@/components/layout/ConfirmBox";
-function DropDownBtnUser({ mobile, setMobile }) {
+
+const LOADING_TOAST = "logout-loading-toast";
+
+function DropDownBtnUser({ mobile, setMobile, name }) {
   const [isShowConfirm, setIsShowConfirm] = useState(false);
   const router = useRouter();
+
+  const { data } = useQuery({
+    queryKey: ["getTourBasketNum"],
+    queryFn: async () => await getBasket(),
+  });
+
   const { mutate } = useMutation({
     mutationKey: ["logout"],
     mutationFn: logout,
+    onMutate: () => {
+      toast.loading("لطفا صبر کنید ...", {
+        id: LOADING_TOAST,
+        duration: Infinity,
+      });
+    },
     onSuccess: (res) => {
+      toast.dismiss(LOADING_TOAST);
       setMobile("");
       toast.success(res.data.message);
       router.push("/");
     },
   });
-  // const { data } = useQuery({
-  //   queryKey: ["getTourBasketNum"],
-  //   queryFn: async () => await getBasket(),
-  // });
 
   return (
     <DropdownMenu>
@@ -54,7 +66,7 @@ function DropDownBtnUser({ mobile, setMobile }) {
       <DropdownMenuContent className="p-1 bg-card">
         <DropdownMenuLabel className="flex rounded bg-background">
           <CircleUserRound className="w-4 ml-2" />
-          {toPersianDigits(mobile)}
+          {name ? name : toPersianDigits(mobile)}
         </DropdownMenuLabel>
         <DropdownMenuItem
           className="mt-1 cursor-pointer"
@@ -67,11 +79,11 @@ function DropDownBtnUser({ mobile, setMobile }) {
           className="mt-1 cursor-pointer"
           onClick={() => router.push("/basket")}
         >
-          {/* {data?.data && (
-            <span className="text-[10px] text-white rounded-lg bg-destructive px-1">
-              New
+          {data?.data && (
+            <span className="px-2 text-white rounded-full bg-destructive">
+              {toPersianDigits("1")}
             </span>
-          )} */}
+          )}
           <ShoppingBasket />
           سبد خرید
         </DropdownMenuItem>

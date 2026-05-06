@@ -6,7 +6,7 @@ import { DatePicker } from "zaman";
 import SelectGender from "../DropDown/selectGender";
 import { Controller, useForm } from "react-hook-form";
 import { Button } from "@/components/ui/button";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { orderPay } from "@/core/services/configs";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { validationTraveler } from "@/core/helper/schemaForm";
@@ -15,10 +15,16 @@ import { calculateDays } from "@/core/helper/calculateDays";
 import { toPersianDigits } from "@/core/helper/convertNumber";
 import { useRouter } from "next/navigation";
 
+const LOADING_TOAST = "order-loading-toast";
+
 function CheckoutForm({ data }) {
   const day = calculateDays(data.startDate, data.endDate);
   const price = toPersianDigits(data.price.toLocaleString());
+
+  const queryClient = useQueryClient();
+
   const navigate = useRouter();
+
   const {
     register,
     handleSubmit,
@@ -31,12 +37,22 @@ function CheckoutForm({ data }) {
   const { mutate } = useMutation({
     mutationKey: ["order"],
     mutationFn: (data) => orderPay(data),
-    onSuccess: () => {
+    onMutate: () => {
+      toast.loading("لطفا صبر کنید ...", {
+        id: LOADING_TOAST,
+        duration: Infinity,
+      });
+    },
+    onSuccess: async () => {
+      toast.dismiss(LOADING_TOAST);
       toast.success("تور با موفقیت خریداری شد.");
-      // navigate.push(`/tours/${data.id}`);
+      await queryClient.invalidateQueries({ queryKey: ["getTourBasketNum"] });
       navigate.push(`/basket`);
     },
-    onError: (err) => toast.error("در خرید تور بها مشکل مواجه شدید!"),
+    onError: (err) => {
+      toast.dismiss(LOADING_TOAST);
+      toast.error("در خرید تور بها مشکل مواجه شدید!");
+    },
   });
   const onSubmit = (formatData) => {
     mutate(formatData);

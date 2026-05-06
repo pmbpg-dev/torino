@@ -6,21 +6,36 @@ import InfoTour from "@/components/template/tourDetails/infoTour";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { addToBasket } from "@/core/services/configs";
+
+const LOADING_TOAST = "reserve-loading-toast";
 
 function TourCardDetails({ tour, day, tourId }) {
   const navigate = useRouter();
 
+  const queryClient = useQueryClient();
+
   const { mutate } = useMutation({
     mutationKey: ["addToBasket"],
     mutationFn: (id) => addToBasket(id),
-    onSuccess: (data) => {
+    onMutate: () => {
+      toast.loading("لطفا صبر کنید ...", {
+        id: LOADING_TOAST,
+        duration: Infinity,
+      });
+    },
+    onSuccess: async (data) => {
+      toast.dismiss(LOADING_TOAST);
+
       if (data.error) return toast.warning(data.message);
+      await queryClient.invalidateQueries({ queryKey: ["getTourBasketNum"] });
       toast.success(data.message);
       navigate.push(`/checkout/${tourId}`);
     },
     onError: (err) => {
+      toast.dismiss(LOADING_TOAST);
+
       toast.warning("برای رزرو باید وارد حساب کاربری شوید!");
     },
   });

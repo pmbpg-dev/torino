@@ -49,11 +49,13 @@ function AnimateBg() {
     <motion.span
       initial={{
         opacity: 0,
+        width: 0,
       }}
       animate={{
         opacity: 0.3,
+        width: "100%",
       }}
-      transition={{ duration: 1 }}
+      transition={{ duration: 0.5 }}
       className={`z-0 absolute top-0 left-0 w-full h-full animate-in bg-primary`}
     ></motion.span>
   );

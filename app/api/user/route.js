@@ -11,13 +11,25 @@ export async function GET() {
 
   try {
     const axios = createServerAxios();
-    const res = await axios.get(`/user/profile`, {
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-      },
-    });
-    return Response.json({ user: res.data });
+    const res = await axios.get(`/user/profile`);
+    return Response.json({ user: res.data }, { status: 200 });
   } catch (err) {
-    return Response.json({ user: null }, { status: 401 });
+    return Response.json({ user: null }, { status: 500 });
+  }
+}
+export async function PUT(req) {
+  const axios = createServerAxios();
+  const newData = await req.json();
+  try {
+    const res = await axios.put("/user/profile", newData);
+    return Response.json(
+      { message: "پروفایل با موفقیت اپدیت شد.", date: res.data },
+      { status: 200 },
+    );
+  } catch (err) {
+    return Response.json(
+      { message: "ویرایش پروفایل به مشکل خورد!" },
+      { status: 500 },
+    );
   }
 }

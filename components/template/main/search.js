@@ -46,7 +46,6 @@ function Search({ onSearch }) {
       endDate.setHours(0, 0, 0, 0);
       params.set("startDate", startDay.toISOString());
       params.set("endDate", endDate.toISOString());
-      console.log(startDay);
     }
     const queryString = params.toString();
     onSearch(queryString);
