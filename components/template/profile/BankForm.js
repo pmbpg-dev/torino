@@ -3,7 +3,9 @@ import { Input } from "@/components/ui/input";
 import { toPersianDigits } from "@/core/helper/convertNumber";
 import { bankSchema } from "@/core/helper/schemaForm";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { getBankByCardNumber } from "iran-bank-detector";
 import { PenLine } from "lucide-react";
+import Image from "next/image";
 import React from "react";
 import { useForm } from "react-hook-form";
 
@@ -32,7 +34,8 @@ function BankForm({ profileData, mutate, isOpen, setIsOpen }) {
       <div
         className={`w-full flex ${!isOpen && "justify-between"} items-center mb-10`}
       >
-        <p>{`${isOpen ? "ویرایش" : ""} اطلاعات حساب بانکی`}</p>
+        <p>{`${isOpen ? "ویرایش" : ""} اطلاعات حساب بانکی ${!isOpen ? debitCard_code && `(${getBankByCardNumber(debitCard_code).bankName})` : ""}`}</p>
+
         {!isOpen && (
           <Button
             onClick={() => setIsOpen(true)}
@@ -46,14 +49,14 @@ function BankForm({ profileData, mutate, isOpen, setIsOpen }) {
       {!isOpen ? (
         <div className="flex flex-col flex-wrap justify-between w-full gap-2 gap-y-10 sm:flex-row">
           <div className="flex justify-between w-full lg:w-2/5 sm:justify-normal sm:gap-4">
+            <span className="opacity-60">شماره کارت</span>
+            <p>{debitCard_code ? toPersianDigits(debitCard_code) : "—"}</p>
+          </div>
+          <div className="flex justify-between w-full lg:w-2/5 sm:justify-normal sm:gap-4">
             <span className="opacity-60">شماره حساب</span>
             <p>
               {accountIdentifier ? toPersianDigits(accountIdentifier) : "—"}
             </p>
-          </div>
-          <div className="flex justify-between w-full lg:w-2/5 sm:justify-normal sm:gap-4">
-            <span className="opacity-60">شماره کارت</span>
-            <p>{debitCard_code ? toPersianDigits(debitCard_code) : "—"}</p>
           </div>
           <div className="flex justify-between w-full lg:w-2/5 sm:justify-normal sm:gap-4">
             <span className="opacity-60">شماره شبا</span>
