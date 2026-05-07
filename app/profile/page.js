@@ -55,7 +55,7 @@ export default function Profile() {
       setIsOpenBank(false);
       toast.success("ویرایش با موفقیت انجام شد.");
       await queryClient.invalidateQueries({
-        queryKey: ["getProfile"],
+        queryKey: ["getProfile", "getUser"],
       });
     },
     onError: (err) => {

@@ -49,7 +49,7 @@ function Search({ onSearch }) {
     }
     const queryString = params.toString();
     onSearch(queryString);
-    router.push(`/?${queryString}`);
+    router.push(`/?${queryString}`, { scroll: false });
   };
 
   return (

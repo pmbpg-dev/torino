@@ -1,3 +1,4 @@
+import { vehicles } from "@/core/data/vehicles";
 import { cityFaMap } from "@/core/helper/cityList";
 import { jalalidate } from "@/core/helper/convertDate";
 import { toPersianDigits } from "@/core/helper/convertNumber";
@@ -5,22 +6,17 @@ import {
   BusFront,
   CalendarArrowDown,
   CalendarArrowUp,
+  CarFront,
   Route,
   ShieldBan,
   Users,
 } from "lucide-react";
 
-const vehicles = {
-  SUV: "سواری",
-  bus: "اتوبوس",
-  Van: "ون",
-  airplane: "هواپیما",
-  ship: "کشتی",
-  train: "قطار",
-};
-
 function InfoTour({ data }) {
   const dates = jalalidate(data.startDate, data.endDate);
+
+  const vehicle = vehicles[data.fleetVehicle];
+  const VehicleIcon = vehicle?.icon || CarFront;
 
   return (
     <>
@@ -47,10 +43,10 @@ function InfoTour({ data }) {
       </div>
       <div className="flex flex-col items-center justify-between p-2 h-[80px] border rounded md:mb-4 md:border-l-2 md:border-0 md:pl-8">
         <span className="flex gap-2">
-          <BusFront />
+          <VehicleIcon />
           حمل و نقل
         </span>
-        <p>{vehicles[data.fleetVehicle]}</p>
+        <p>{vehicle?.label || "سواری"}</p>
       </div>
       <div className="flex flex-col items-center justify-between p-2 h-[80px] border rounded md:mb-4 md:border-l-2 md:border-0 md:pl-8">
         <span className="flex gap-2">

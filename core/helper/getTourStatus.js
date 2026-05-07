@@ -6,7 +6,6 @@ export const getTourStatus = (startDate, endDate) => {
   const todayUTC = new Date(
     Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate()),
   );
-  console.log(todayUTC);
   const startUTC = new Date(
     Date.UTC(start.getUTCFullYear(), start.getUTCMonth(), start.getUTCDate()),
   );
@@ -18,17 +17,17 @@ export const getTourStatus = (startDate, endDate) => {
 
   if (todayUTC < startUTC) {
     return {
-      status: "yellow-600",
+      status: "bg-yellow-600",
       label: `${dayToStart} روز تا برگذاری`,
     };
   }
 
   if (todayUTC >= startUTC && todayUTC <= endUTC) {
     return {
-      status: "primary",
+      status: "bg-primary",
       label: "درحال برگذاری",
     };
   }
 
-  return { status: "destructive", label: "به پایان رسیده" };
+  return { status: "bg-destructive", label: "به پایان رسیده" };
 };

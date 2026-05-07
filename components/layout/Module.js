@@ -27,7 +27,7 @@ function Module({ setShow, setMobile }) {
     control,
     handleSubmit,
     watch,
-    formState: { errors },
+    formState: { errors, isDirty, isSubmitting },
   } = useForm({ resolver: yupResolver(phoneSchema) });
   const phoneValue = watch("phone");
   //---------------send OTP code ------------------
@@ -157,7 +157,9 @@ function Module({ setShow, setMobile }) {
               />
 
               <span>{errors.phone?.message}</span>
-              <Button type="submit">ارسال کد تایید</Button>
+              <Button disabled={!isDirty || isSubmitting} type="submit">
+                ارسال کد تایید
+              </Button>
             </form>
           </motion.div>
         ) : (

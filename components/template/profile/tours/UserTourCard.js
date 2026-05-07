@@ -1,5 +1,6 @@
 "use client";
 
+import { vehicles } from "@/core/data/vehicles";
 import { cityFaMap } from "@/core/helper/cityList";
 import { jalalidate } from "@/core/helper/convertDate";
 import { toPersianDigits } from "@/core/helper/convertNumber";
@@ -13,33 +14,6 @@ import {
   Train,
   Van,
 } from "lucide-react";
-
-const vehicles = {
-  SUV: {
-    label: "سواری",
-    icon: CarFront,
-  },
-  bus: {
-    label: "اتوبوس",
-    icon: BusFront,
-  },
-  Van: {
-    label: "ون",
-    icon: Van,
-  },
-  airplane: {
-    label: "هواپیما",
-    icon: Plane,
-  },
-  ship: {
-    label: "کشتی",
-    icon: Ship,
-  },
-  train: {
-    label: "قطار",
-    icon: Train,
-  },
-};
 
 export default function UserTourCard({ tour, index }) {
   const {
@@ -58,7 +32,7 @@ export default function UserTourCard({ tour, index }) {
 
   const vehicle = vehicles[fleetVehicle];
   const VehicleIcon = vehicle?.icon || CarFront;
-  console.log(status);
+
   return (
     <div className="w-full border rounded-sm bg-card md:bg-background">
       <div className="relative w-full p-3">
@@ -72,7 +46,7 @@ export default function UserTourCard({ tour, index }) {
             {vehicle?.label || "سواری"}
           </p>
           <span
-            className={`absolute px-2 py-1 rounded-full left-1 top-1 bg-${status.status} text-[8px] sm:static md:absolute lg:static lg:text-[14px] text-white opacity-55`}
+            className={`absolute px-2 py-1 rounded-full left-1 top-1 ${status?.status} text-[8px] sm:static md:absolute lg:static lg:text-[14px] text-white opacity-55`}
           >
             {status.label}
           </span>

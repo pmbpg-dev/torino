@@ -6,9 +6,8 @@ import { useQuery } from "@tanstack/react-query";
 import { getTors } from "@/core/services/configs";
 import { useSearchParams } from "next/navigation";
 import Card from "./card";
-import { Skeleton } from "@/components/ui/skeleton";
 import { SearchX } from "lucide-react";
-import SkeletonCard from "./SkeletonCard";
+import SkeletonCard from "./skeletonCard";
 
 function TorsComponent() {
   const searchParams = useSearchParams();

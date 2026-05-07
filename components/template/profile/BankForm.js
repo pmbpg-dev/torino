@@ -113,7 +113,12 @@ function BankForm({ profileData, mutate, isOpen, setIsOpen }) {
             </div>
           </form>
           <div className="flex justify-between w-full gap-4 pt-3 sm:justify-end sm:border-t">
-            <Button type="submit" form="bankForm" className="w-[100px] h-10">
+            <Button
+              disabled={!isDirty || isSubmitting}
+              type="submit"
+              form="bankForm"
+              className="w-[100px] h-10"
+            >
               تایید
             </Button>
             <Button

@@ -160,6 +160,7 @@ export default function PersonalForm({
               type="submit"
               form="personalForm"
               className="w-[100px] h-10"
+              disabled={!isDirty || isSubmitting}
             >
               تایید
             </Button>

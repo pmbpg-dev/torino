@@ -61,7 +61,11 @@ function AccountForm({ profileData, mutate, isOpen, setIsOpen }) {
                 </span>
               )}
             </div>
-            <Button type="submit" className="w-[93px] h-10">
+            <Button
+              disabled={!isDirty || isSubmitting}
+              type="submit"
+              className="w-[93px] h-10"
+            >
               تایید
             </Button>
           </form>
