@@ -5,14 +5,14 @@ import { bankSchema } from "@/core/helper/schemaForm";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { getBankByCardNumber } from "iran-bank-detector";
 import { PenLine } from "lucide-react";
-import Image from "next/image";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 
 function BankForm({ profileData, mutate, isOpen, setIsOpen }) {
   const {
     payment: { shaba_code, debitCard_code, accountIdentifier },
   } = profileData;
+  const [bankName, setBankName] = useState("");
 
   const {
     register,
@@ -29,12 +29,17 @@ function BankForm({ profileData, mutate, isOpen, setIsOpen }) {
     mutate(newData);
   };
 
+  useEffect(() => {
+    const name = getBankByCardNumber(debitCard_code)?.bankName;
+    setBankName(name ? name : "");
+  }, [debitCard_code]);
+
   return (
     <div className="w-full border rounded-[10px] p-5">
       <div
         className={`w-full flex ${!isOpen && "justify-between"} items-center mb-10`}
       >
-        <p>{`${isOpen ? "ویرایش" : ""} اطلاعات حساب بانکی ${!isOpen ? debitCard_code && `(${getBankByCardNumber(debitCard_code).bankName})` : ""}`}</p>
+        <p>{`${isOpen ? "ویرایش" : ""} اطلاعات حساب بانکی ${!isOpen ? (debitCard_code ? bankName : "") : ""}`}</p>
 
         {!isOpen && (
           <Button

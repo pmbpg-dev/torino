@@ -34,7 +34,14 @@ function Module({ setShow, setMobile }) {
   const { mutate: sendMutate } = useMutation({
     mutationKey: ["sendOTP"],
     mutationFn: (phone) => sendOTP(phone),
+    onMutate: () => {
+      toast.loading("لطفا صبر کنید ...", {
+        id: LOADING_TOAST,
+        duration: Infinity,
+      });
+    },
     onSuccess: (data) => {
+      toast.dismiss(LOADING_TOAST);
       setStep(2);
       toast.info("کد اعتبار سنجی", {
         description: `${toPersianDigits(data.code)}`,
@@ -44,6 +51,10 @@ function Module({ setShow, setMobile }) {
         },
       });
       setTime(60);
+    },
+    onError: () => {
+      toast.dismiss(LOADING_TOAST);
+      toast.error("در ارسال کد مشکلی پیش آمده!");
     },
   });
   const sendCode = (data) => sendMutate(data.phone);

@@ -30,16 +30,16 @@ export default function Transactions() {
           <p className="hidden text-center md:block md:flex-1">نوع تراکنش</p>
           <p className="flex-1 text-center">شماره سفارش</p>
         </div>
-        {!transactions.length ? (
+        {!transactions?.length ? (
           <Empty />
         ) : (
           <div className="flex-1 overflow-y-auto">
             {transactions.map((tr, index) => (
               <div
                 key={tr.id}
-                className="flex items-center justify-around w-full h-14 text-[12px] opacity-85 py-2"
+                className="flex items-center justify-around w-full h-14 text-[12px] opacity-85 py-2 lg:text-sm"
               >
-                <p className="flex-1 text-center text-[10px]">
+                <p className="flex-1 text-center text-[10px] lg:text-sm">
                   {convertTimeDate(tr.createdAt)}
                 </p>
                 <p className="flex-1 text-center">
@@ -48,7 +48,9 @@ export default function Transactions() {
                 <p className="hidden text-center md:block md:flex-1">
                   ثبت نام در تور گردشگری
                 </p>
-                <p className="flex-1 text-center">{index + 1 * 156266}</p>
+                <p className="flex-1 text-center">
+                  {toPersianDigits(index + 1 * 156266)}
+                </p>
               </div>
             ))}
           </div>

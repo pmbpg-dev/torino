@@ -1,3 +1,4 @@
+import { getBankByCardNumber } from "iran-bank-detector";
 import { date, object, string } from "yup";
 
 const phoneRegex = /^(\+98|0)?9\d{9}$/;
@@ -41,7 +42,10 @@ export const bankSchema = object().shape({
   debitCard_code: string()
     .required("شماره کارت الزامی است")
     .length(16, "شماره کارت باید 16 رقم باشد")
-    .transform((value) => value?.replace(/\s|-/g, "") || ""),
+    .transform((value) => value?.replace(/\s|-/g, "") || "")
+    .test("valid-card", "شماره کارت اشتباه است.", (value) =>
+      getBankByCardNumber(value),
+    ),
 
   shaba_code: string()
     .required("شماره شبا الزامی است")

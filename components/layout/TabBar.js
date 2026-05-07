@@ -9,7 +9,7 @@ import { usePathname } from "next/navigation";
 export default function TabBar() {
   const pathname = usePathname();
   return (
-    <div className="flex w-full text-[10px] font-bold border-b-2 gap-3 justify-between py-2  my-6 md:hidden">
+    <div className="flex w-full text-[10px] font-bold border-b-2 gap-3 justify-between py-2  my-6 md:hidden sm:justify-start sm:gap-12">
       <div className="relative ">
         {pathname === "/profile" && <AnimateUnderLine />}
         <Link
