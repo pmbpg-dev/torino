@@ -17,11 +17,24 @@ function BankForm({ profileData, mutate, isOpen, setIsOpen }) {
   const {
     register,
     handleSubmit,
-    control,
+    reset,
     formState: { errors, isDirty, isSubmitting },
   } = useForm({
     resolver: yupResolver(bankSchema),
+    defaultValues: {
+      shaba_code: "",
+      debitCard_code: "",
+      accountIdentifier: "",
+    },
   });
+
+  useEffect(() => {
+    reset({
+      shaba_code,
+      debitCard_code,
+      accountIdentifier,
+    });
+  }, [reset, profileData]);
 
   const onSubmit = (payment) => {
     const bankData = { payment };

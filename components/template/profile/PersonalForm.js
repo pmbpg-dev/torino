@@ -10,6 +10,7 @@ import { Controller, useForm } from "react-hook-form";
 import SelectGender from "../DropDown/selectGender";
 import { DatePicker } from "zaman";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useEffect } from "react";
 
 export default function PersonalForm({
   profileData,
@@ -23,10 +24,24 @@ export default function PersonalForm({
     register,
     handleSubmit,
     control,
+    reset,
     formState: { errors, isDirty, isSubmitting },
   } = useForm({
     resolver: yupResolver(validationTraveler),
+    defaultValues: {
+      fullName: "",
+      gender: "",
+      nationalCode: "",
+    },
   });
+
+  useEffect(() => {
+    reset({
+      fullName: `${firstName} ${lastName}`,
+      gender,
+      nationalCode,
+    });
+  }, [reset, profileData]);
 
   const onSubmit = (data) => {
     const [firstName, ...lastName] = data.fullName.trim().split(" ");

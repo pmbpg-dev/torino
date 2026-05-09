@@ -6,6 +6,7 @@ import { toPersianDigits } from "@/core/helper/convertNumber";
 import { emailSchema } from "@/core/helper/schemaForm";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { PenLine } from "lucide-react";
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 
 function AccountForm({ profileData, mutate, isOpen, setIsOpen }) {
@@ -14,8 +15,18 @@ function AccountForm({ profileData, mutate, isOpen, setIsOpen }) {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors, isDirty, isSubmitting },
-  } = useForm({ resolver: yupResolver(emailSchema) });
+  } = useForm({
+    resolver: yupResolver(emailSchema),
+    defaultValues: { email: "" },
+  });
+
+  useEffect(() => {
+    if (email) {
+      reset({ email });
+    }
+  }, [email, reset]);
 
   const onSubmit = (data) => {
     const newData = { ...profileData, ...data };
