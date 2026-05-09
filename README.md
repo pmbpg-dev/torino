@@ -45,7 +45,7 @@
 
 ```git
 git clone https://github.com/pmbpg-dev/torino
--backend.git
+--backend.git
 ```
 ```npm
 npm install
