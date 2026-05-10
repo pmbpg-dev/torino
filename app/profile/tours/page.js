@@ -4,17 +4,16 @@ import Empty from "@/components/template/allPage/Empty";
 import UserTourCard from "@/components/template/profile/tours/UserTourCard";
 import { getUserTour } from "@/core/services/configs";
 import { useQuery } from "@tanstack/react-query";
+import { useEffect } from "react";
 
-// export const metadata = {
-//   title: "تورهای من",
-//   description: "صفحه حساب کاربری",
-// };
 export default function ProfileTours() {
   const { data, isFetching } = useQuery({
     queryKey: ["user_tours"],
     queryFn: () => getUserTour(),
   });
-  // console.log(data.data.length);
+  useEffect(() => {
+    document.title = "تور های من";
+  }, []);
 
   if (isFetching)
     return (
