@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { toPersianDigits } from "@/core/helper/convertNumber";
+import { formatCartNumber } from "@/core/helper/formatCartNumber";
 import { bankSchema } from "@/core/helper/schemaForm";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { getBankByCardNumber } from "iran-bank-detector";
@@ -52,7 +53,7 @@ function BankForm({ profileData, mutate, isOpen, setIsOpen }) {
       <div
         className={`w-full flex ${!isOpen && "justify-between"} items-center mb-10`}
       >
-        <p>{`${isOpen ? "ویرایش" : ""} اطلاعات حساب بانکی ${!isOpen ? (debitCard_code ? bankName : "") : ""}`}</p>
+        <p>{`${isOpen ? "ویرایش" : ""} اطلاعات حساب بانکی ${!isOpen ? (debitCard_code ? `(${bankName})` : "") : ""}`}</p>
 
         {!isOpen && (
           <Button
@@ -68,7 +69,7 @@ function BankForm({ profileData, mutate, isOpen, setIsOpen }) {
         <div className="flex flex-col flex-wrap justify-between w-full gap-2 gap-y-10 sm:flex-row">
           <div className="flex justify-between w-full lg:w-2/5 sm:justify-normal sm:gap-4">
             <span className="opacity-60">شماره کارت</span>
-            <p>{debitCard_code ? toPersianDigits(debitCard_code) : "—"}</p>
+            <p>{debitCard_code ? formatCartNumber(debitCard_code) : "—"}</p>
           </div>
           <div className="flex justify-between w-full lg:w-2/5 sm:justify-normal sm:gap-4">
             <span className="opacity-60">شماره حساب</span>
@@ -78,7 +79,7 @@ function BankForm({ profileData, mutate, isOpen, setIsOpen }) {
           </div>
           <div className="flex justify-between w-full lg:w-2/5 sm:justify-normal sm:gap-4">
             <span className="opacity-60">شماره شبا</span>
-            <p>{shaba_code ? toPersianDigits(shaba_code) : "—"}</p>
+            <p>{shaba_code ? `IR${toPersianDigits(shaba_code)}` : "—"}</p>
           </div>
         </div>
       ) : (
