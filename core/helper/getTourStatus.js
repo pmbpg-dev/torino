@@ -17,17 +17,17 @@ export const getTourStatus = (startDate, endDate) => {
 
   if (todayUTC < startUTC) {
     return {
-      status: "bg-yellow-600",
+      status: "upcoming",
       label: `${dayToStart} روز تا برگذاری`,
     };
   }
 
   if (todayUTC >= startUTC && todayUTC <= endUTC) {
     return {
-      status: "bg-primary",
+      status: "ongoing",
       label: "درحال برگذاری",
     };
   }
 
-  return { status: "bg-destructive", label: "به پایان رسیده" };
+  return { status: "ended", label: "به پایان رسیده" };
 };

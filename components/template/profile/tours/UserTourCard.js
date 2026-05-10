@@ -30,6 +30,13 @@ export default function UserTourCard({ tour, index }) {
 
   const status = getTourStatus(startDate, endDate);
 
+  const statusClass =
+    status.status === "upcoming"
+      ? "bg-yellow-600"
+      : status.status === "ongoing"
+        ? "bg-primary"
+        : "bg-destructive";
+
   const vehicle = vehicles[fleetVehicle];
   const VehicleIcon = vehicle?.icon || CarFront;
 
@@ -46,7 +53,7 @@ export default function UserTourCard({ tour, index }) {
             {vehicle?.label || "سواری"}
           </p>
           <span
-            className={`absolute px-2 py-1 rounded-full left-1 top-1 ${status?.status} text-[8px] sm:static md:absolute lg:static lg:text-[14px] text-white opacity-55`}
+            className={`absolute px-2 py-1 rounded-full left-1 top-1 ${statusClass} text-[8px] sm:static md:absolute lg:static lg:text-[14px] text-white opacity-55`}
           >
             {status.label}
           </span>
